@@ -54,7 +54,6 @@ export type Content = {
       now: string
       method: string
       incidents: string
-      deploys: string
       stack: string
       cv: string
       requests: string
@@ -66,7 +65,7 @@ export type Content = {
     kpi: { operational: string; commits: string; incidents: string; stack: string }
     service: { open: string; close: string; architecture: string; live: string }
     incident: { symptom: string; cause: string; fix: string; replay: string; backoff: string; resolved: string }
-    deploys: { title: string; snapshot: string; activity: string }
+    activity: { title: string; snapshot: string }
     palette: { hint: string; placeholder: string; copyEmail: string; copied: string; download: string; none: string }
     stackProd: string
     stackKnown: string
@@ -114,7 +113,7 @@ export const EMAIL = 'devgomesss@gmail.com'
 // Só usado no link wa.me dos pedidos (ok do Pedro em 09/11/2026). Não aparece escrito no site.
 export const WHATSAPP = '5581993259534'
 export const GITHUB_USER = 'pedrolucas201'
-// Repositórios públicos cujos commits aparecem em "deploys recentes". Lista fechada de propósito:
+// Repositórios públicos do gráfico de atividade e do total de commits. Lista fechada de propósito:
 // nada de repo de cliente entra por acidente.
 export const PUBLIC_REPOS = ['pede-direto', 'dashunlock', 'portfolio']
 // Repositórios da aba "agora". Só projetos do Pedro: nada de repo de cliente. Privado mostra só contagem e data.
@@ -191,7 +190,6 @@ export const content: Record<Lang, Content> = {
         now: 'Agora',
         method: 'Método',
         incidents: 'Incidentes',
-        deploys: 'Deploys',
         stack: 'Stack',
         cv: 'Currículo',
         requests: 'Pedidos',
@@ -225,7 +223,7 @@ export const content: Record<Lang, Content> = {
         backoff: 'espera entre recargas (min)',
         resolved: 'resolvido',
       },
-      deploys: { title: 'Últimos commits', snapshot: 'retrato de', activity: 'atividade · 90 dias' },
+      activity: { title: 'commits públicos · 90 dias', snapshot: 'retrato de' },
       palette: {
         hint: 'comandos',
         placeholder: 'Ir para, copiar e-mail, baixar currículo…',
@@ -409,7 +407,6 @@ export const content: Record<Lang, Content> = {
         now: 'Now',
         method: 'Method',
         incidents: 'Incidents',
-        deploys: 'Deploys',
         stack: 'Stack',
         cv: 'Resume',
         requests: 'Requests',
@@ -443,7 +440,7 @@ export const content: Record<Lang, Content> = {
         backoff: 'wait between reloads (min)',
         resolved: 'resolved',
       },
-      deploys: { title: 'Latest commits', snapshot: 'snapshot from', activity: 'activity · 90 days' },
+      activity: { title: 'public commits · 90 days', snapshot: 'snapshot from' },
       palette: {
         hint: 'commands',
         placeholder: 'Go to, copy email, download resume…',

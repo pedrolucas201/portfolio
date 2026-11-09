@@ -3,7 +3,6 @@ import { content, EMAIL, type Lang, type Service } from './content'
 import { Backdrop } from './components/Backdrop'
 import { Boot } from './components/Boot'
 import { CommandPalette, type Command } from './components/CommandPalette'
-import { Deploys } from './components/Deploys'
 import { IncidentReplay } from './components/IncidentReplay'
 import { Overview } from './components/Overview'
 import { CvPage } from './components/CvPage'
@@ -32,7 +31,7 @@ function shouldBoot(): boolean {
   }
 }
 
-const SECTIONS = ['overview', 'work', 'projects', 'now', 'method', 'incidents', 'deploys', 'stack', 'cv', 'requests', 'contact'] as const
+const SECTIONS = ['overview', 'work', 'projects', 'now', 'method', 'incidents', 'stack', 'cv', 'requests', 'contact'] as const
 type SectionId = (typeof SECTIONS)[number]
 const ICON: Record<SectionId, IconName> = {
   overview: 'user',
@@ -41,7 +40,6 @@ const ICON: Record<SectionId, IconName> = {
   now: 'activity',
   method: 'checks',
   incidents: 'alert',
-  deploys: 'commit',
   stack: 'layers',
   cv: 'file',
   requests: 'mail',
@@ -139,7 +137,7 @@ export default function App() {
         </ul>
       </Section>
     ),
-    now: () => <NowPage c={c} lang={lang === 'pt' ? 'pt-BR' : 'en'} onOpen={open} />,
+    now: () => <NowPage c={c} lang={lang === 'pt' ? 'pt-BR' : 'en'} onOpen={open} activity={activity} />,
     method: () => <MethodPage c={c} />,
     cv: () => <CvPage c={c} />,
     requests: () => <RequestPage c={c} />,
@@ -149,11 +147,6 @@ export default function App() {
         {c.incidents.map((i) => (
           <IncidentReplay key={i.date + i.service} incident={i} labels={c.ui.incident} />
         ))}
-      </Section>
-    ),
-    deploys: () => (
-      <Section id="deploys" title={c.ui.nav.deploys}>
-        <Deploys activity={activity} labels={c.ui.deploys} lang={lang === 'pt' ? 'pt-BR' : 'en'} />
       </Section>
     ),
     stack: () => <StackPage c={c} onOpen={open} />,

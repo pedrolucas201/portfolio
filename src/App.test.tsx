@@ -76,16 +76,16 @@ describe('App', () => {
     render(<App />)
     // No início, o indicador de commits mostra o total do retrato em vez de ficar em "…".
     expect((await screen.findAllByText(String(snapshot.total))).length).toBeGreaterThan(0)
-    openTab('deploys')
-    expect(screen.getByText(snapshot.commits[0].message)).toBeTruthy()
+    // Na aba agora, o gráfico de atividade avisa que é o retrato do build.
+    openTab('now')
     expect(screen.getByText(/retrato de|snapshot from/)).toBeTruthy()
   })
 
   it('rede caída também cai no retrato', async () => {
     vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('Failed to fetch'))))
     render(<App />)
-    openTab('deploys')
-    expect(await screen.findByText(snapshot.commits[0].message)).toBeTruthy()
+    openTab('now')
+    expect(await screen.findByText(/retrato de|snapshot from/)).toBeTruthy()
   })
 
   it('abas: abre serviço pela paleta, fecha e volta pra vizinha; o #hash acompanha', () => {

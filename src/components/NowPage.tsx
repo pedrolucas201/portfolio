@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { ACTIVITY_REPOS, type Content } from '../content'
 import snapshot from '../github-snapshot.json'
+import type { Activity } from '../hooks/useGithubActivity'
+import { ActivityChart } from './ActivityChart'
 import { Section } from './Section'
 
 type RepoActivity = {
@@ -16,10 +18,10 @@ const repos = (snapshot as { repos?: Record<string, RepoActivity> }).repos ?? {}
 const SERVICE_OF: Record<string, string> = { 'pede-direto': 'pede-direto', dashunlock: 'dashunlock', 'gas-manager': 'gas' }
 const DAY = 86_400_000
 
-type Props = { c: Content; lang: string; onOpen: (id: string) => void }
+type Props = { c: Content; lang: string; onOpen: (id: string) => void; activity: Activity | null }
 
 // "Agora" lido do git (retrato do build), mais o que não aparece em commit.
-export function NowPage({ c, lang, onOpen }: Props) {
+export function NowPage({ c, lang, onOpen, activity }: Props) {
   const p = c.ui.nowPage
   const [now] = useState(Date.now)
   const fmt = new Intl.DateTimeFormat(lang, { day: '2-digit', month: 'short' })
@@ -33,6 +35,10 @@ export function NowPage({ c, lang, onOpen }: Props) {
       <div className="rounded-2xl border border-line bg-panel/80 p-4 backdrop-blur sm:p-5">
         <h3 className="font-semibold">{p.title}</h3>
         <p className="mt-0.5 text-sm text-muted">{p.subtitle}</p>
+
+        <div className="mt-4">
+          <ActivityChart activity={activity} labels={c.ui.activity} lang={lang} />
+        </div>
 
         <ul className="mt-4 grid gap-3 md:grid-cols-2">
           {cards.map(({ repo, a, service }) => {

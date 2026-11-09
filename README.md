@@ -14,7 +14,7 @@ npm run cv         # gera public/cv-{pt,en}.pdf (precisa do build servido em loc
 ## Decisões
 
 - **Vite + React 19 + TypeScript + Tailwind v4, sem router e sem lib de UI.** As abas usam o `#hash` da URL
-  (`useTabs`): link direto e o botão "voltar" funcionam sem dependência nova.
+  (`useTabs`): link direto e o botão "voltar" funcionam sem dependência nova. A aba "agora" sai do git (`scripts/github-snapshot.mjs`); de repositório privado entram só contagem e datas.
 - **Conteúdo separado da UI.** Todo texto do site e do CV fica em `src/content.ts`, tipado por `Content`.
   Faltar uma chave em pt ou em en é erro de compilação.
 - **i18n por estado.** `useState<Lang>` mais `document.documentElement.lang`, sem biblioteca.
