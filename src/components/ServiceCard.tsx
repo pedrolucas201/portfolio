@@ -3,13 +3,13 @@ import type { Content, Service } from '../content'
 import { Diagram } from './Diagram'
 import { StatusDot } from './StatusDot'
 
-type Props = { service: Service; ui: Content['ui'] }
+type Props = { service: Service; ui: Content['ui']; defaultOpen?: boolean }
 
-export function ServiceCard({ service: s, ui }: Props) {
-  const [open, setOpen] = useState(false)
+export function ServiceCard({ service: s, ui, defaultOpen = false }: Props) {
+  const [open, setOpen] = useState(defaultOpen)
   const panelId = `svc-${s.id}`
   return (
-    <li id={s.id} className="scroll-mt-20 rounded-xl border border-line bg-panel/80 backdrop-blur transition-colors hover:border-accent/40">
+    <li className="rounded-xl border border-line bg-panel/80 backdrop-blur transition-colors hover:border-accent/40">
       <button
         type="button"
         aria-expanded={open}

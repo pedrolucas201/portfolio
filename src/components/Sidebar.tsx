@@ -1,4 +1,5 @@
 import type { Content } from '../content'
+import { DownloadIcon } from './DownloadIcon'
 import { StatusDot } from './StatusDot'
 
 export type NavItem = { id: string; label: string }
@@ -25,7 +26,8 @@ export function Sidebar({ c, items, active, onPalette, onLang }: Props) {
           download
           className="flex items-center justify-center gap-2 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-bg hover:bg-accent/85"
         >
-          ↓ {c.ui.palette.download}
+          <DownloadIcon />
+          {c.ui.palette.download}
         </a>
       </div>
 
@@ -62,10 +64,10 @@ export function Sidebar({ c, items, active, onPalette, onLang }: Props) {
       </nav>
 
       <div className="flex items-center justify-between gap-2 border-t border-line p-3 font-mono text-[11px]">
-        <button type="button" onClick={onLang} className="rounded border border-line px-2 py-1 text-muted hover:text-fg">
+        <button type="button" onClick={onLang} className="rounded border border-line px-2 py-1 lowercase text-muted hover:text-fg">
           {c.ui.switchLang}
         </button>
-        <button type="button" onClick={onPalette} className="flex items-center gap-2 rounded border border-line px-2 py-1 text-muted hover:text-fg">
+        <button type="button" onClick={onPalette} className="flex items-center gap-2 rounded border border-line px-2 py-1 lowercase text-muted hover:text-fg">
           {c.ui.palette.hint} <kbd className="text-fg">Ctrl K</kbd>
         </button>
       </div>

@@ -1,4 +1,5 @@
 import type { Content } from '../content'
+import { DownloadIcon } from './DownloadIcon'
 
 type Props = { c: Content; commits: number | null }
 
@@ -40,8 +41,9 @@ export function Overview({ c, commits }: Props) {
               {l.label}
             </a>
           ))}
-          <a href={c.cv.href} download className="rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-bg hover:bg-accent/85">
-            ↓ {c.cv.label}
+          <a href={c.cv.href} download className="inline-flex items-center gap-2 rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-bg hover:bg-accent/85">
+            <DownloadIcon />
+            {c.cv.label}
           </a>
         </nav>
         <p className="relative mt-5 max-w-2xl leading-relaxed text-fg/90">{c.summary}</p>

@@ -16,7 +16,16 @@ beforeEach(() => {
   // Sem rede nos testes: o GitHub "cai" e o site tem que seguir de pé.
   vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response('[]', { status: 503 }))))
   sessionStorage.clear()
+  history.replaceState(null, '', '/')
 })
+
+// Abre uma aba pela paleta Ctrl+K, como um visitante faria pelo teclado.
+function openTab(query: string) {
+  fireEvent.keyDown(window, { key: 'k', ctrlKey: true })
+  const box = screen.getByRole('combobox')
+  fireEvent.change(box, { target: { value: query } })
+  fireEvent.keyDown(box, { key: 'Enter' })
+}
 afterEach(() => {
   cleanup()
   vi.unstubAllGlobals()
@@ -63,15 +72,36 @@ describe('App', () => {
   it('GitHub fora do ar ou no limite (403): mostra o retrato do build, não seção vazia', async () => {
     vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response('rate limited', { status: 403 }))))
     render(<App />)
-    expect(await screen.findByText(snapshot.commits[0].message)).toBeTruthy()
+    // No início, o indicador de commits mostra o total do retrato em vez de ficar em "…".
+    expect((await screen.findAllByText(String(snapshot.total))).length).toBeGreaterThan(0)
+    openTab('deploys')
+    expect(screen.getByText(snapshot.commits[0].message)).toBeTruthy()
     expect(screen.getByText(/retrato de|snapshot from/)).toBeTruthy()
-    expect(screen.getAllByText(String(snapshot.total)).length).toBeGreaterThan(0)
   })
 
   it('rede caída também cai no retrato', async () => {
     vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('Failed to fetch'))))
     render(<App />)
+    openTab('deploys')
     expect(await screen.findByText(snapshot.commits[0].message)).toBeTruthy()
+  })
+
+  it('abas: abre serviço pela paleta, fecha e volta pra vizinha; o #hash acompanha', () => {
+    render(<App />)
+    expect([...document.querySelectorAll('[id^=tab-]')].map((t) => t.id)).toEqual(['tab-overview', 'tab-work', 'tab-projects', 'tab-now'])
+    openTab('DashUnlock')
+    expect(document.querySelector('[aria-current=page]')!.id).toBe('tab-dashunlock')
+    expect(location.hash).toBe('#dashunlock')
+    expect(screen.getByText(/Arquitetura|Architecture/)).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: /(fechar|close) DashUnlock/ }))
+    expect(document.getElementById('tab-dashunlock')).toBeNull()
+    expect(document.querySelector('[aria-current=page]')!.id).toBe('tab-now')
+  })
+
+  it('link direto (#stack) já abre a aba certa', () => {
+    history.replaceState(null, '', '/#stack')
+    render(<App />)
+    expect(document.querySelector('[aria-current=page]')!.id).toBe('tab-stack')
   })
 
   it('troca de idioma atualiza o lang do documento', () => {

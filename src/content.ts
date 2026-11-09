@@ -43,7 +43,23 @@ export type Content = {
     switchLang: string
     contactNav: string
     statusLabel: Record<Status, string>
-    nav: { aria: string; services: string; overview: string; work: string; projects: string; incidents: string; deploys: string; stack: string }
+    nav: {
+      aria: string
+      tabs: string
+      services: string
+      overview: string
+      work: string
+      projects: string
+      now: string
+      method: string
+      incidents: string
+      deploys: string
+      stack: string
+      cv: string
+      freela: string
+      contact: string
+    }
+    contact: { intro: string; copy: string }
     boot: { skip: string; lines: [string, string][]; done: string }
     top: { since: string; local: string }
     kpi: { operational: string; commits: string; incidents: string; stack: string }
@@ -70,6 +86,9 @@ export type Content = {
   incidents: Incident[]
   stack: { prod: string[]; known: string[] }
   education: string[]
+  now: { updated: string; items: string[] }
+  method: { title: string; text: string }[]
+  freela: { intro: string; offers: string[]; example: string; cta: Link }
 }
 
 export const EMAIL = 'devgomesss@gmail.com'
@@ -141,14 +160,21 @@ export const content: Record<Lang, Content> = {
       statusLabel: { ok: 'operacional', testing: 'em testes', ended: 'encerrado', off: 'fora do ar' },
       nav: {
         aria: 'Seções',
+        tabs: 'Abas abertas',
         services: 'serviços',
-        overview: 'Visão geral',
-        work: 'Em produção',
-        projects: 'Projetos próprios',
+        overview: 'Início',
+        work: 'Trabalho',
+        projects: 'Projetos',
+        now: 'Agora',
+        method: 'Método',
         incidents: 'Incidentes',
-        deploys: 'Deploys recentes',
+        deploys: 'Deploys',
         stack: 'Stack',
+        cv: 'Currículo',
+        freela: 'Freela',
+        contact: 'Contato',
       },
+      contact: { intro: 'Respondo por e-mail ou pelo LinkedIn.', copy: 'copiar' },
       boot: {
         skip: 'pular',
         lines: [
@@ -295,6 +321,36 @@ export const content: Record<Lang, Content> = {
     ],
     stack,
     education: ['Análise e Desenvolvimento de Sistemas, UNINASSAU (2026 – 2028, em andamento)', 'Português nativo · inglês intermediário'],
+    now: {
+      updated: 'atualizado em 09/11/2026',
+      items: [
+        'Mantendo em produção a plataforma da Pierfans (Laravel) e os projetos Flutter + Go da Invo.',
+        'Pede Direto: o painel da loja agora se recupera sozinho quando o App Check trava.',
+        'DashUnlock v0.1.1 nas mãos dos primeiros testers.',
+        'Estudando n8n, Supabase e Kubernetes.',
+        'Cursando Análise e Desenvolvimento de Sistemas na UNINASSAU.',
+        'Aberto a vagas remotas em tempo integral: Flutter, Go e React.',
+      ],
+    },
+    method: [
+      { title: 'Critério de pronto antes do código', text: 'Escrevo o que tem que acontecer, e o que não pode acontecer, antes de implementar.' },
+      { title: 'Causa raiz, não sintoma', text: 'Hipótese não é fato: confiro no código e no estado real antes de afirmar a causa.' },
+      { title: 'Teste prova só o que exercita', text: 'Teste verde não substitui aparelho real quando o critério depende do aparelho.' },
+      { title: 'Deploy com volta planejada', text: 'Em produção sem staging, valido antes de subir e deixo o rollback pronto.' },
+      { title: 'IA como apoio', text: 'Uso IA como ferramenta, sempre revisando o diff e os testes.' },
+      { title: 'Falha também é resultado', text: 'Registro o que foi tentado, por que falhou e o que faria reabrir.' },
+    ],
+    freela: {
+      intro: 'Faço projeto sob medida pra quem precisa de um sistema rodando de verdade, do levantamento de requisitos ao suporte depois do lançamento.',
+      offers: [
+        'Sites e sistemas web com painel administrativo',
+        'Apps Flutter (Android e web)',
+        'Backends e integrações em Go ou Laravel: pagamento, webhooks, nota fiscal',
+        'Manutenção e correção de sistema que já está em produção',
+      ],
+      example: 'Exemplo no ar: o Pede Direto, site de pedidos da La Carne Burger.',
+      cta: { label: 'Pedir orçamento por e-mail', href: `mailto:${EMAIL}?subject=Or%C3%A7amento%20de%20projeto` },
+    },
   },
   en: {
     ui: {
@@ -303,14 +359,21 @@ export const content: Record<Lang, Content> = {
       statusLabel: { ok: 'operational', testing: 'in testing', ended: 'ended', off: 'offline' },
       nav: {
         aria: 'Sections',
+        tabs: 'Open tabs',
         services: 'services',
-        overview: 'Overview',
-        work: 'In production',
-        projects: 'Own projects',
+        overview: 'Home',
+        work: 'Work',
+        projects: 'Projects',
+        now: 'Now',
+        method: 'Method',
         incidents: 'Incidents',
-        deploys: 'Recent deploys',
+        deploys: 'Deploys',
         stack: 'Stack',
+        cv: 'Resume',
+        freela: 'Freelance',
+        contact: 'Contact',
       },
+      contact: { intro: 'I reply by email or on LinkedIn.', copy: 'copy' },
       boot: {
         skip: 'skip',
         lines: [
@@ -455,5 +518,35 @@ export const content: Record<Lang, Content> = {
     ],
     stack,
     education: ['Systems Analysis and Development, UNINASSAU (2026 – 2028, in progress)', 'Portuguese native · English intermediate'],
+    now: {
+      updated: 'updated 2026-11-09',
+      items: [
+        'Running Pierfans’ platform (Laravel) and Invo’s Flutter + Go projects in production.',
+        'Pede Direto: the store dashboard now recovers on its own when App Check locks up.',
+        'DashUnlock v0.1.1 in the hands of its first testers.',
+        'Studying n8n, Supabase and Kubernetes.',
+        'Studying Systems Analysis and Development at UNINASSAU.',
+        'Open to full-time remote roles: Flutter, Go and React.',
+      ],
+    },
+    method: [
+      { title: 'Definition of done before code', text: 'I write down what must happen, and what must not, before implementing.' },
+      { title: 'Root cause, not symptom', text: 'A hypothesis isn’t a fact: I check the code and the live state before naming the cause.' },
+      { title: 'Tests prove only what they exercise', text: 'A green test doesn’t replace a real device when the criterion depends on the device.' },
+      { title: 'Deploys with a way back', text: 'In production without staging, I validate before shipping and keep the rollback ready.' },
+      { title: 'AI as support', text: 'I use AI as a tool, always reviewing the diff and the tests.' },
+      { title: 'Failure is a result too', text: 'I log what was tried, why it failed and what would reopen it.' },
+    ],
+    freela: {
+      intro: 'I build custom projects for people who need a system that actually runs, from requirements to post-launch support.',
+      offers: [
+        'Websites and web systems with an admin dashboard',
+        'Flutter apps (Android and web)',
+        'Go or Laravel backends and integrations: payments, webhooks, invoicing',
+        'Maintenance and fixes for systems already in production',
+      ],
+      example: 'Live example: Pede Direto, the ordering site of La Carne Burger.',
+      cta: { label: 'Ask for a quote by email', href: `mailto:${EMAIL}?subject=Project%20quote` },
+    },
   },
 }

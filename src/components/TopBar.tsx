@@ -13,7 +13,7 @@ export function TopBar({ c, onPalette, onLang }: Props) {
   const time = new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Recife', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(now)
 
   return (
-    <div className="sticky top-0 z-30 flex items-center gap-3 whitespace-nowrap border-b border-line bg-bg/80 px-4 py-2.5 font-mono text-[11px] text-muted backdrop-blur">
+    <div className="flex items-center gap-3 whitespace-nowrap border-b border-line bg-bg/80 px-4 py-2.5 font-mono text-[11px] text-muted backdrop-blur">
       <span className="flex items-center gap-1.5 text-accent">
         <span aria-hidden className="size-1.5 animate-pulse-ring rounded-full bg-accent" />
         uptime {careerUptime(now)}
