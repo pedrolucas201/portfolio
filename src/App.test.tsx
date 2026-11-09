@@ -101,6 +101,19 @@ describe('App', () => {
     expect(document.querySelector('[aria-current=page]')!.id).toBe('tab-now')
   })
 
+  it('sidebar recolhe, mantém os nomes acessíveis e lembra a escolha', () => {
+    localStorage.clear()
+    const { unmount } = render(<App />)
+    fireEvent.click(screen.getByRole('button', { name: content.en.ui.nav.collapse }))
+    expect(screen.getByRole('button', { name: content.en.ui.nav.expand })).toBeTruthy()
+    // recolhida, o link continua com nome (texto escondido só visualmente)
+    expect(screen.getAllByRole('link', { name: content.en.ui.nav.stack }).length).toBeGreaterThan(0)
+    unmount()
+    render(<App />)
+    expect(screen.getByRole('button', { name: content.en.ui.nav.expand })).toBeTruthy()
+    localStorage.clear()
+  })
+
   it('início tem o "sobre"; tela limpa esconde o painel e Esc volta', () => {
     render(<App />)
     for (const a of content.en.about) expect(screen.getByRole('region', { name: a.title })).toBeTruthy()

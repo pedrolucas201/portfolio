@@ -48,6 +48,8 @@ export type Content = {
     nav: {
       aria: string
       tabs: string
+      collapse: string
+      expand: string
       services: string
       overview: string
       work: string
@@ -186,6 +188,8 @@ export const content: Record<Lang, Content> = {
       nav: {
         aria: 'Seções',
         tabs: 'Abas abertas',
+        collapse: 'Recolher menu',
+        expand: 'Abrir menu',
         services: 'serviços',
         overview: 'Início',
         work: 'Trabalho',
@@ -407,6 +411,8 @@ export const content: Record<Lang, Content> = {
       nav: {
         aria: 'Sections',
         tabs: 'Open tabs',
+        collapse: 'Collapse menu',
+        expand: 'Expand menu',
         services: 'services',
         overview: 'Home',
         work: 'Work',

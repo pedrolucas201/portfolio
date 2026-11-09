@@ -12,13 +12,23 @@ import { ContactPage, MethodPage } from './components/Pages'
 import { RequestPage } from './components/RequestPage'
 import { Section } from './components/Section'
 import { ServiceCard } from './components/ServiceCard'
-import type { IconName } from './components/Icon'
+import { Icon, type IconName } from './components/Icon'
 import { Sidebar, type NavItem } from './components/Sidebar'
 import { StackPage } from './components/StackPage'
 import { TabBar, type Tab } from './components/TabBar'
 import { TopBar } from './components/TopBar'
 import { useGithubActivity } from './hooks/useGithubActivity'
 import { useTabs } from './hooks/useTabs'
+
+// Menu recolhido é preferência de quem visita: fica no navegador dele. Sem storage, abre normal.
+const SIDEBAR_KEY = 'sidebar-collapsed'
+function initialCollapsed(): boolean {
+  try {
+    return localStorage.getItem(SIDEBAR_KEY) === '1'
+  } catch {
+    return false
+  }
+}
 
 const initialLang = (): Lang => (navigator.language.toLowerCase().startsWith('pt') ? 'pt' : 'en')
 
@@ -57,6 +67,16 @@ export default function App() {
   const [lang, setLang] = useState<Lang>(initialLang)
   const [booting, setBooting] = useState(shouldBoot)
   const [palette, setPalette] = useState(false)
+  const [collapsed, setCollapsed] = useState(initialCollapsed)
+  const toggleSidebar = () =>
+    setCollapsed((v) => {
+      try {
+        localStorage.setItem(SIDEBAR_KEY, v ? '0' : '1')
+      } catch {
+        /* sem storage: vale só nesta visita */
+      }
+      return !v
+    })
   const [toast, setToast] = useState('')
   // Tela limpa vale só pra aba em que foi ligada: trocar de aba desliga sozinho.
   const [cleanOn, setCleanOn] = useState<string | null>(null)
@@ -119,6 +139,7 @@ export default function App() {
     { id: 'copy-email', label: c.ui.palette.copyEmail, hint: EMAIL, run: copyEmail },
     { id: 'cv', label: c.ui.palette.download, hint: 'PDF', run: () => window.open(c.cv.href, '_self') },
     ...c.contacts.slice(1).map((l) => ({ id: `open-${l.label}`, label: l.label, hint: '↗', run: () => window.open(l.href, '_blank') })),
+    { id: 'clean', label: c.ui.clean.button, hint: '◎', run: () => setCleanOn(active) },
     { id: 'lang', label: c.ui.switchLang === 'EN' ? 'English' : 'Português', hint: c.ui.switchLang, run: toggleLang },
   ]
 
@@ -174,29 +195,25 @@ export default function App() {
       {booting && <Boot boot={c.ui.boot} name={c.name} onDone={endBoot} />}
 
       <div className="flex">
-        <Sidebar c={c} items={nav} active={active} onPalette={() => setPalette(true)} onLang={toggleLang} />
+        <Sidebar
+          c={c}
+          items={nav}
+          active={active}
+          collapsed={collapsed}
+          onToggle={toggleSidebar}
+          onPalette={() => setPalette(true)}
+          onLang={toggleLang}
+        />
         <div className="min-w-0 flex-1">
           <div className="sticky top-0 z-30">
             <TopBar c={c} onPalette={() => setPalette(true)} onLang={toggleLang} />
-            <TabBar tabs={tabBar} active={active} onSelect={open} onClose={close} closeLabel={c.ui.service.close}
-              ariaLabel={c.ui.nav.tabs}
-              action={
-                <button
-                  type="button"
-                  aria-pressed={clean}
-                  onClick={() => setCleanOn(clean ? null : active)}
-                  className={`rounded-md border px-2 py-1 font-mono text-[11px] lowercase ${clean ? 'border-accent text-accent' : 'border-line text-muted hover:text-fg'}`}
-                >
-                  {c.ui.clean.button}
-                </button>
-              }
-            />
+            <TabBar tabs={tabBar} active={active} onSelect={open} onClose={close} closeLabel={c.ui.service.close} ariaLabel={c.ui.nav.tabs} />
           </div>
           <main
             key={active}
             className="mx-auto max-w-5xl animate-rise px-4 pt-6 pb-24 sm:px-8 sm:pt-8"
           >
-            {clean ? <CleanScreen backLabel={c.ui.clean.back} onBack={closeClean} /> : view}
+            {clean ? <CleanScreen onBack={closeClean} /> : view}
           </main>
         </div>
       </div>
@@ -209,6 +226,19 @@ export default function App() {
           empty={c.ui.palette.none}
         />
       )}
+      {/* Tela limpa: botão flutuante, sempre à vista. Na tela limpa ele vira "voltar". */}
+      <button
+        type="button"
+        aria-pressed={clean}
+        onClick={() => setCleanOn(clean ? null : active)}
+        className={`fixed right-4 bottom-4 z-30 inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-medium lowercase shadow-lg shadow-black/50 backdrop-blur transition-colors sm:right-6 sm:bottom-6 ${
+          clean ? 'border-accent bg-accent text-bg hover:bg-accent/85' : 'border-accent/50 bg-panel/90 text-accent hover:border-accent hover:bg-accent/15'
+        }`}
+      >
+        <Icon name="eye" />
+        {clean ? c.ui.clean.back : c.ui.clean.button}
+      </button>
+
       {toast && (
         <p role="status" className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 animate-rise rounded-lg border border-accent/40 bg-panel px-4 py-2 font-mono text-sm text-accent">
           ✓ {toast}
