@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-09T04:52:49.495Z",
-  "total": 124,
+  "generatedAt": "2026-11-09T04:54:57.916Z",
+  "total": 125,
   "perDay": [
     0,
     0,
@@ -91,9 +91,16 @@
     0,
     0,
     0,
-    21
+    22
   ],
   "commits": [
+    {
+      "repo": "portfolio",
+      "sha": "986bfe8",
+      "message": "chore: retrato do git com o repo do portfólio; ignora .vercel",
+      "date": "2026-11-09T04:54:03Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/986bfe8222a2bea8fe55f4c6d7ef8e29eb714f26"
+    },
     {
       "repo": "portfolio",
       "sha": "305e8ed",
@@ -128,13 +135,6 @@
       "message": "feat: 'sobre' no início, tela limpa (PL em trilhas), diagrama de arquitetura do Pede Direto (archify)",
       "date": "2026-11-09T04:30:44Z",
       "url": "https://github.com/pedrolucas201/portfolio/commit/1ee3bb30cee4031fda0c2e5b5c7e4928c6d0e9a2"
-    },
-    {
-      "repo": "portfolio",
-      "sha": "7e666a5",
-      "message": "content: 'Portfólio' no lugar de 'Este portfólio'",
-      "date": "2026-11-09T04:23:06Z",
-      "url": "https://github.com/pedrolucas201/portfolio/commit/7e666a5c1d57407cbe5f0d830f8edd9d4eb7b17f"
     }
   ],
   "repos": {
@@ -234,10 +234,15 @@
     },
     "portfolio": {
       "private": false,
-      "total": 19,
+      "total": 20,
       "capped": false,
-      "lastDate": "2026-11-09T04:40:44Z",
+      "lastDate": "2026-11-09T04:54:03Z",
       "recent": [
+        {
+          "date": "2026-11-09T04:54:03Z",
+          "message": "chore: retrato do git com o repo do portfólio; ignora .vercel",
+          "url": "https://github.com/pedrolucas201/portfolio/commit/986bfe8222a2bea8fe55f4c6d7ef8e29eb714f26"
+        },
         {
           "date": "2026-11-09T04:40:44Z",
           "message": "content: telefone na aba currículo e nos PDFs (ok do Pedro)",
@@ -247,14 +252,9 @@
           "date": "2026-11-09T04:39:15Z",
           "message": "content: nome completo no início e no currículo; CV volta a ter fundo branco",
           "url": "https://github.com/pedrolucas201/portfolio/commit/0e03045631b100408fe233b0b33edbe4a1b38b6c"
-        },
-        {
-          "date": "2026-11-09T04:37:33Z",
-          "message": "feat: bolinha de aba aberta na sidebar; 'sobre' vira Origem / Hoje / Como trabalho",
-          "url": "https://github.com/pedrolucas201/portfolio/commit/4dba95e9b62f54c1d65dbfb177b6f5bbb2cd8b8e"
         }
       ]
     }
   },
-  "reposAt": "2026-11-09T04:52:49.495Z"
+  "reposAt": "2026-11-09T04:54:57.916Z"
 }
