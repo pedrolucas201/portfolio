@@ -306,15 +306,6 @@ export const content: Record<Lang, Content> = {
           'Produto próprio em produção, com usuários reais: painel web, app offline-first pro entregador e backend. Código privado.',
         stack: ['React', 'Vite', 'React Native', 'Go', 'PostgreSQL'],
       },
-      {
-        id: 'press2play',
-        name: 'Press2Play',
-        status: 'off',
-        period: '2024 – 2025',
-        summary: 'Site de jogos com dados em tempo real.',
-        stack: ['React', 'TypeScript', 'MUI', 'Firebase'],
-        links: [repo('site-de-jogos')],
-      },
     ],
     incidents: [
       {
@@ -509,15 +500,6 @@ export const content: Record<Lang, Content> = {
         status: 'ok',
         summary: 'My own product, in production with real users: web dashboard, offline-first delivery app and backend. Private code.',
         stack: ['React', 'Vite', 'React Native', 'Go', 'PostgreSQL'],
-      },
-      {
-        id: 'press2play',
-        name: 'Press2Play',
-        status: 'off',
-        period: '2024 – 2025',
-        summary: 'Games website with real-time data.',
-        stack: ['React', 'TypeScript', 'MUI', 'Firebase'],
-        links: [repo('site-de-jogos')],
       },
     ],
     incidents: [
