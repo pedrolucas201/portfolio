@@ -70,6 +70,7 @@ export type Content = {
     palette: { hint: string; placeholder: string; copyEmail: string; copied: string; download: string; none: string }
     stackProd: string
     stackKnown: string
+    stackPage: { intro: string; legend: string; query: string; usedIn: string; none: string }
     education: string
     cvWork: string
     cvPage: { subtitle: string; summary: string; skills: string; download: string }
@@ -87,6 +88,7 @@ export type Content = {
   projects: Service[]
   incidents: Incident[]
   stack: { prod: string[]; known: string[] }
+  stackGroups: { label: string; items: string[] }[]
   education: string[]
   now: { updated: string; items: string[] }
   method: { title: string; text: string }[]
@@ -231,6 +233,13 @@ export const content: Record<Lang, Content> = {
       },
       stackProd: 'Em produção',
       stackKnown: 'Também trabalho com',
+      stackPage: {
+        intro: 'Clique numa tecnologia pra ver onde ela roda.',
+        legend: 'em produção',
+        query: 'serviços onde stack contém',
+        usedIn: 'usado em',
+        none: 'Sem projeto listado aqui: conhecimento de estudo ou de emprego anterior.',
+      },
       education: 'Formação',
       cvWork: 'Experiência',
       cvPage: { subtitle: 'Mesmo conteúdo do site, em formato de currículo.', summary: 'Resumo', skills: 'Competências', download: 'Baixar PDF' },
@@ -273,7 +282,7 @@ export const content: Record<Lang, Content> = {
         role: 'Desenvolvedor Full Stack (presencial, Recife)',
         summary:
           'ConectaSUAS, SaaS multi-tenant de gestão pública atendendo 5 prefeituras. Também acumulei o papel de QA do time.',
-        stack: ['Java 11', 'JSP', 'JavaScript', 'PostgreSQL'],
+        stack: ['Java 11', 'JSP', 'JavaScript', 'PostgreSQL', 'Angular', 'Ionic'],
       },
     ],
     projects: [
@@ -331,6 +340,13 @@ export const content: Record<Lang, Content> = {
       },
     ],
     stack,
+    stackGroups: [
+      { label: 'Linguagens', items: ['Dart', 'Go', 'PHP', 'JavaScript', 'TypeScript', 'Java'] },
+      { label: 'Mobile e front-end', items: ['Flutter', 'React', 'React Native', 'Vite', 'Angular', 'Ionic', 'Android'] },
+      { label: 'Back-end', items: ['Laravel', 'Node.js', 'JSP'] },
+      { label: 'Dados', items: ['PostgreSQL', 'MySQL', 'Firebase', 'Firestore'] },
+      { label: 'Infra e CI', items: ['GCP', 'AWS S3', 'GitHub Actions'] },
+    ],
     education: ['Análise e Desenvolvimento de Sistemas, UNINASSAU (2026 – 2028, em andamento)', 'Português nativo · inglês intermediário'],
     now: {
       updated: 'atualizado em 09/11/2026',
@@ -427,6 +443,13 @@ export const content: Record<Lang, Content> = {
       },
       stackProd: 'In production',
       stackKnown: 'Also work with',
+      stackPage: {
+        intro: 'Click a technology to see where it runs.',
+        legend: 'in production',
+        query: 'services where stack contains',
+        usedIn: 'used in',
+        none: 'No project listed here: knowledge from study or a previous job.',
+      },
       education: 'Education',
       cvWork: 'Experience',
       cvPage: { subtitle: 'Same content as the site, in resume format.', summary: 'Summary', skills: 'Skills', download: 'Download PDF' },
@@ -469,7 +492,7 @@ export const content: Record<Lang, Content> = {
         role: 'Full Stack Developer (on-site, Recife)',
         summary:
           'ConectaSUAS, a multi-tenant public-management SaaS serving 5 city governments. I also took on the team’s QA role.',
-        stack: ['Java 11', 'JSP', 'JavaScript', 'PostgreSQL'],
+        stack: ['Java 11', 'JSP', 'JavaScript', 'PostgreSQL', 'Angular', 'Ionic'],
       },
     ],
     projects: [
@@ -525,6 +548,13 @@ export const content: Record<Lang, Content> = {
       },
     ],
     stack,
+    stackGroups: [
+      { label: 'Languages', items: ['Dart', 'Go', 'PHP', 'JavaScript', 'TypeScript', 'Java'] },
+      { label: 'Mobile & front-end', items: ['Flutter', 'React', 'React Native', 'Vite', 'Angular', 'Ionic', 'Android'] },
+      { label: 'Back-end', items: ['Laravel', 'Node.js', 'JSP'] },
+      { label: 'Data', items: ['PostgreSQL', 'MySQL', 'Firebase', 'Firestore'] },
+      { label: 'Infra & CI', items: ['GCP', 'AWS S3', 'GitHub Actions'] },
+    ],
     education: ['Systems Analysis and Development, UNINASSAU (2026 – 2028, in progress)', 'Portuguese native · English intermediate'],
     now: {
       updated: 'updated 2026-11-09',

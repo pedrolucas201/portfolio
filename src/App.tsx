@@ -13,6 +13,7 @@ import { Section } from './components/Section'
 import { ServiceCard } from './components/ServiceCard'
 import type { IconName } from './components/Icon'
 import { Sidebar, type NavItem } from './components/Sidebar'
+import { StackPage } from './components/StackPage'
 import { TabBar, type Tab } from './components/TabBar'
 import { TopBar } from './components/TopBar'
 import { useGithubActivity } from './hooks/useGithubActivity'
@@ -154,37 +155,7 @@ export default function App() {
         <Deploys activity={activity} labels={c.ui.deploys} lang={lang === 'pt' ? 'pt-BR' : 'en'} />
       </Section>
     ),
-    stack: () => (
-      <Section id="stack" title={c.ui.nav.stack}>
-        <div className="grid gap-4 md:grid-cols-2">
-          {(
-            [
-              [c.ui.stackProd, c.stack.prod, true],
-              [c.ui.stackKnown, c.stack.known, false],
-            ] as const
-          ).map(([label, items, prod]) => (
-            <div key={label} className="rounded-xl border border-line bg-panel/80 p-4 backdrop-blur">
-              <p className="mb-3 font-mono text-[11px] tracking-widest text-muted uppercase">{label}</p>
-              <ul className="flex flex-wrap gap-1.5">
-                {items.map((t) => (
-                  <li
-                    key={t}
-                    className={`rounded-md border px-2 py-1 font-mono text-[12px] ${prod ? 'border-accent/30 bg-accent/10 text-accent' : 'border-line text-muted'}`}
-                  >
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <ul className="mt-4 space-y-1 text-sm text-muted">
-          {c.education.map((e) => (
-            <li key={e}>{e}</li>
-          ))}
-        </ul>
-      </Section>
-    ),
+    stack: () => <StackPage c={c} onOpen={open} />,
   }
 
   const current = service(active)

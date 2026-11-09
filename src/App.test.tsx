@@ -9,6 +9,7 @@ import { careerUptime } from './lib/uptime'
 import snapshot from './github-snapshot.json'
 import { bucketByDay } from './hooks/useGithubActivity'
 import { requestMailto, requestWhatsapp } from './lib/request'
+import { inProduction, usedIn } from './lib/stack'
 
 const hash = (w: string) => createHash('sha256').update(w).digest('hex').slice(0, 16)
 const FORBIDDEN = new Set(['9bc5648bcebea3ab', '83270f787967e067', '8224b82eefe8d232', '52667e8b16cdc074', 'b225a2a87fc71659', 'cee373168fe39366', '711438b7374d532d', 'fe14010b4fe83303', 'f8e6ff5696022369', 'a93e7fc04e20e480'])
@@ -99,10 +100,14 @@ describe('App', () => {
     expect(document.querySelector('[aria-current=page]')!.id).toBe('tab-now')
   })
 
-  it('link direto (#stack) já abre a aba certa', () => {
+  it('link direto (#stack) já abre a aba certa; clicar na tecnologia mostra onde ela roda', () => {
     history.replaceState(null, '', '/#stack')
     render(<App />)
     expect(document.querySelector('[aria-current=page]')!.id).toBe('tab-stack')
+    fireEvent.click(screen.getByRole('button', { name: /^Laravel/ }))
+    const result = screen.getByRole('button', { name: /^Pierfans/ })
+    fireEvent.click(result)
+    expect(document.querySelector('[aria-current=page]')!.id).toBe('tab-pierfans')
   })
 
   it('troca de idioma atualiza o lang do documento', () => {
@@ -131,6 +136,15 @@ describe('lógica', () => {
     const params = new URLSearchParams(mail.split('?')[1])
     expect(params.get('subject')).toBe('[Projeto] Ana & Cia')
     expect(params.get('body')).toBe('App de pedidos\nprazo: março\n\nAna & Cia · assinatura')
+  })
+
+  it('stack: "Java" não casa com "JavaScript", "Laravel" casa com "Laravel 11"', () => {
+    const ids = (t: string) => usedIn(content.pt, t).map((s) => s.id)
+    expect(ids('Laravel')).toEqual(['pierfans'])
+    expect(ids('Java')).toEqual(['virtual-vision', 'dashunlock'])
+    expect(ids('JavaScript')).toEqual(['virtual-vision', 'pede-direto'])
+    expect(ids('Go')).toEqual(['invo', 'gas'])
+    expect(inProduction(content.pt, 'Node.js')).toBe(false)
   })
 
   it('uptime de carreira conta desde nov/2024', () => {
