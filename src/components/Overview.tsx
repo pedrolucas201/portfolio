@@ -3,7 +3,7 @@ import { DownloadIcon } from './DownloadIcon'
 
 type Props = { c: Content; commits: number | null }
 
-// Cartão de perfil + indicadores. Tudo que um recrutador precisa nos primeiros 30 s está aqui.
+// Perfil + "sobre" (trajetória, hoje, o que busca) + indicadores. O essencial dos primeiros 30 s está aqui.
 export function Overview({ c, commits }: Props) {
   const all = [...c.work, ...c.projects]
   const kpis: [string, string | number][] = [
@@ -46,7 +46,21 @@ export function Overview({ c, commits }: Props) {
             {c.cv.label}
           </a>
         </nav>
-        <p className="relative mt-5 max-w-2xl leading-relaxed text-fg/90">{c.summary}</p>
+      </div>
+
+      {/* Sobre: quem é, antes dos números. */}
+      <div className="grid gap-3 md:grid-cols-3">
+        {c.about.map((a, i) => (
+          <section
+            key={a.title}
+            aria-label={a.title}
+            className="animate-rise rounded-xl border border-line bg-panel/80 p-4 backdrop-blur"
+            style={{ animationDelay: `${i * 70}ms` }}
+          >
+            <h2 className="mb-2 font-mono text-[11px] tracking-widest text-accent uppercase">{a.title}</h2>
+            <p className="text-sm leading-relaxed text-fg/90">{a.text}</p>
+          </section>
+        ))}
       </div>
 
       <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">

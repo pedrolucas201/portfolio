@@ -35,6 +35,17 @@ export function ServiceCard({ service: s, ui, defaultOpen = false }: Props) {
           </span>
         ))}
         <span className="ml-auto flex items-center gap-2">
+          {s.architecture && (
+            <a
+              href={s.architecture}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-md border border-line bg-bg/60 px-2.5 py-1 text-[12px] font-medium hover:border-accent hover:text-accent"
+            >
+              {ui.service.fullArchitecture}
+              <Icon name="external" className="size-3.5" />
+            </a>
+          )}
           {s.live && (
             <a
               href={s.live}

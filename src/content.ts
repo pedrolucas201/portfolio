@@ -21,6 +21,7 @@ export type Service = {
   summary: string
   stack: string[]
   live?: string // site público no ar
+  architecture?: string // diagrama completo (archify), só de projeto próprio e em alto nível
   links?: Link[]
   diagram?: Diagram
 }
@@ -63,12 +64,13 @@ export type Content = {
     boot: { skip: string; lines: [string, string][]; done: string }
     top: { since: string; local: string }
     kpi: { operational: string; commits: string; incidents: string; stack: string }
-    service: { open: string; close: string; architecture: string; live: string }
+    service: { open: string; close: string; architecture: string; live: string; fullArchitecture: string }
     incident: { symptom: string; cause: string; fix: string; replay: string; backoff: string; resolved: string }
     activity: { title: string; snapshot: string }
     palette: { hint: string; placeholder: string; copyEmail: string; copied: string; download: string; none: string }
     stackProd: string
     stackKnown: string
+    clean: { button: string; back: string }
     nowPage: { title: string; subtitle: string; commits: string; last: string; private: string }
     stackPage: { intro: string; legend: string; query: string; usedIn: string; none: string }
     education: string
@@ -91,6 +93,7 @@ export type Content = {
   stackGroups: { label: string; items: string[] }[]
   education: string[]
   method: { title: string; text: string }[]
+  about: { title: string; text: string }[]
   request: {
     title: string
     intro: string
@@ -214,7 +217,7 @@ export const content: Record<Lang, Content> = {
         incidents: 'incidentes resolvidos',
         stack: 'tecnologias em produção',
       },
-      service: { open: 'detalhes', close: 'fechar', architecture: 'Arquitetura', live: 'Ver no ar' },
+      service: { open: 'detalhes', close: 'fechar', architecture: 'Arquitetura', live: 'Ver no ar', fullArchitecture: 'Arquitetura' },
       incident: {
         symptom: 'Sintoma',
         cause: 'Causa',
@@ -234,6 +237,7 @@ export const content: Record<Lang, Content> = {
       },
       stackProd: 'Em produção',
       stackKnown: 'Também trabalho com',
+      clean: { button: 'tela limpa', back: 'voltar' },
       nowPage: {
         title: 'Em execução',
         subtitle: 'Gerado do histórico do git a cada build. Nenhum número aqui é escrito à mão.',
@@ -302,6 +306,7 @@ export const content: Record<Lang, Content> = {
           'Site de pedidos que manda o pedido pronto pro WhatsApp da loja, sem app de delivery no meio, com painel pra loja. Feito pra um cliente real e pensado como white label.',
         stack: ['JavaScript', 'Firebase', 'Firestore', 'App Check'],
         live: 'https://lacarne.com.br',
+        architecture: '/arquitetura/pede-direto.html',
         links: [repo('pede-direto')],
         diagram: pedeDiretoDiagram({ client: 'Cliente', site: 'Site de pedidos', panel: 'Painel da loja', wa: 'WhatsApp da loja' }),
       },
@@ -365,6 +370,11 @@ export const content: Record<Lang, Content> = {
       { label: 'Infra e CI', items: ['GCP', 'AWS S3', 'GitHub Actions'] },
     ],
     education: ['Análise e Desenvolvimento de Sistemas, UNINASSAU (2026 – 2028, em andamento)', 'Português nativo · inglês intermediário'],
+    about: [
+      { title: 'Trajetória', text: 'Comecei com React em projetos próprios em 2024. No fim daquele ano entrei na Virtual Vision, em Recife, mantendo o ConectaSUAS, sistema de gestão pública usado por 5 prefeituras, onde também acumulei o papel de QA do time.' },
+      { title: 'Hoje', text: 'Trabalho como PJ, remoto: na Pierfans com Laravel e em projetos da Invo com Flutter e Go, do levantamento de requisitos ao suporte depois do lançamento. Por fora, mantenho produtos meus no ar, como o Pede Direto. Curso Análise e Desenvolvimento de Sistemas na UNINASSAU.' },
+      { title: 'O que busco', text: 'Hoje eu toco os projetos sozinho. Quero entrar num time de produto, com revisão de código e gente mais experiente por perto, pra crescer junto. Remoto, tempo integral, com Flutter, Go ou React.' },
+    ],
     method: [
       { title: 'Critério de pronto antes do código', text: 'Escrevo o que tem que acontecer, e o que não pode acontecer, antes de implementar.' },
       { title: 'Causa raiz, não sintoma', text: 'Hipótese não é fato: confiro no código e no estado real antes de afirmar a causa.' },
@@ -428,7 +438,7 @@ export const content: Record<Lang, Content> = {
         incidents: 'resolved incidents',
         stack: 'technologies in production',
       },
-      service: { open: 'details', close: 'close', architecture: 'Architecture', live: 'See it live' },
+      service: { open: 'details', close: 'close', architecture: 'Architecture', live: 'See it live', fullArchitecture: 'Architecture' },
       incident: {
         symptom: 'Symptom',
         cause: 'Cause',
@@ -448,6 +458,7 @@ export const content: Record<Lang, Content> = {
       },
       stackProd: 'In production',
       stackKnown: 'Also work with',
+      clean: { button: 'clean screen', back: 'back' },
       nowPage: {
         title: 'Running now',
         subtitle: 'Generated from git history on every build. No number here is typed by hand.',
@@ -516,6 +527,7 @@ export const content: Record<Lang, Content> = {
           'Ordering site that sends the finished order to the restaurant’s WhatsApp, no delivery app in between, plus a store dashboard. Built for a real client, designed as white label.',
         stack: ['JavaScript', 'Firebase', 'Firestore', 'App Check'],
         live: 'https://lacarne.com.br',
+        architecture: '/arquitetura/pede-direto.html',
         links: [repo('pede-direto')],
         diagram: pedeDiretoDiagram({ client: 'Customer', site: 'Ordering site', panel: 'Store dashboard', wa: 'Store WhatsApp' }),
       },
@@ -577,6 +589,11 @@ export const content: Record<Lang, Content> = {
       { label: 'Infra & CI', items: ['GCP', 'AWS S3', 'GitHub Actions'] },
     ],
     education: ['Systems Analysis and Development, UNINASSAU (2026 – 2028, in progress)', 'Portuguese native · English intermediate'],
+    about: [
+      { title: 'Path', text: 'I started with React on my own projects in 2024. At the end of that year I joined Virtual Vision in Recife, maintaining ConectaSUAS, a public-management system used by 5 city governments, where I also took on the team’s QA role.' },
+      { title: 'Today', text: 'I work as a remote contractor: at Pierfans with Laravel and on Invo projects with Flutter and Go, from requirements to post-launch support. On the side, I keep products of my own running, like Pede Direto. I study Systems Analysis and Development at UNINASSAU.' },
+      { title: 'What I’m looking for', text: 'Right now I run projects on my own. I want to join a product team, with code review and more experienced people around, to grow together. Remote, full-time, with Flutter, Go or React.' },
+    ],
     method: [
       { title: 'Definition of done before code', text: 'I write down what must happen, and what must not, before implementing.' },
       { title: 'Root cause, not symptom', text: 'A hypothesis isn’t a fact: I check the code and the live state before naming the cause.' },

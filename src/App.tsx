@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react
 import { content, EMAIL, type Lang, type Service } from './content'
 import { Backdrop } from './components/Backdrop'
 import { Boot } from './components/Boot'
+import { CleanScreen } from './components/CleanScreen'
 import { CommandPalette, type Command } from './components/CommandPalette'
 import { IncidentReplay } from './components/IncidentReplay'
 import { Overview } from './components/Overview'
@@ -57,8 +58,12 @@ export default function App() {
   const [booting, setBooting] = useState(shouldBoot)
   const [palette, setPalette] = useState(false)
   const [toast, setToast] = useState('')
+  // Tela limpa vale só pra aba em que foi ligada: trocar de aba desliga sozinho.
+  const [cleanOn, setCleanOn] = useState<string | null>(null)
   const activity = useGithubActivity()
   const { tabs, active, open, close } = useTabs(START_TABS, isTab)
+  const clean = cleanOn === active
+  const closeClean = useCallback(() => setCleanOn(null), [])
   const c = content[lang]
 
   const nav: NavItem[] = useMemo(() => SECTIONS.map((id) => ({ id, label: c.ui.nav[id], icon: ICON[id] })), [c])
@@ -173,13 +178,25 @@ export default function App() {
         <div className="min-w-0 flex-1">
           <div className="sticky top-0 z-30">
             <TopBar c={c} onPalette={() => setPalette(true)} onLang={toggleLang} />
-            <TabBar tabs={tabBar} active={active} onSelect={open} onClose={close} closeLabel={c.ui.service.close} ariaLabel={c.ui.nav.tabs} />
+            <TabBar tabs={tabBar} active={active} onSelect={open} onClose={close} closeLabel={c.ui.service.close}
+              ariaLabel={c.ui.nav.tabs}
+              action={
+                <button
+                  type="button"
+                  aria-pressed={clean}
+                  onClick={() => setCleanOn(clean ? null : active)}
+                  className={`rounded-md border px-2 py-1 font-mono text-[11px] lowercase ${clean ? 'border-accent text-accent' : 'border-line text-muted hover:text-fg'}`}
+                >
+                  {c.ui.clean.button}
+                </button>
+              }
+            />
           </div>
           <main
             key={active}
             className="mx-auto max-w-5xl animate-rise px-4 pt-6 pb-24 sm:px-8 sm:pt-8"
           >
-            {view}
+            {clean ? <CleanScreen backLabel={c.ui.clean.back} onBack={closeClean} /> : view}
           </main>
         </div>
       </div>

@@ -101,6 +101,17 @@ describe('App', () => {
     expect(document.querySelector('[aria-current=page]')!.id).toBe('tab-now')
   })
 
+  it('início tem o "sobre"; tela limpa esconde o painel e Esc volta', () => {
+    render(<App />)
+    for (const a of content.en.about) expect(screen.getByRole('region', { name: a.title })).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: content.en.ui.clean.button }))
+    expect(screen.getByRole('img', { name: 'PL' })).toBeTruthy()
+    expect(screen.queryByRole('region', { name: content.en.about[0].title })).toBeNull()
+    fireEvent.keyDown(window, { key: 'Escape' })
+    expect(screen.queryByRole('img', { name: 'PL' })).toBeNull()
+    expect(screen.getByRole('region', { name: content.en.about[0].title })).toBeTruthy()
+  })
+
   it('link direto (#stack) já abre a aba certa; clicar na tecnologia mostra onde ela roda', () => {
     history.replaceState(null, '', '/#stack')
     render(<App />)

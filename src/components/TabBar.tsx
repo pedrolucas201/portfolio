@@ -1,5 +1,7 @@
 import { Icon, type IconName } from './Icon'
 
+import type { ReactNode } from 'react'
+
 export type Tab = { id: string; label: string; icon: IconName }
 
 type Props = {
@@ -9,14 +11,15 @@ type Props = {
   onClose: (id: string) => void
   closeLabel: string
   ariaLabel: string
+  action?: ReactNode
 }
 
 // Barra de abas abertas. É navegação (cada aba é uma "página" com #hash próprio), por isso nav + aria-current
 // em vez de tablist: o botão de fechar dentro de um tablist não é válido pra leitor de tela.
-export function TabBar({ tabs, active, onSelect, onClose, closeLabel, ariaLabel }: Props) {
+export function TabBar({ tabs, active, onSelect, onClose, closeLabel, ariaLabel, action }: Props) {
   return (
-    <nav aria-label={ariaLabel} className="border-b border-line bg-bg/60 backdrop-blur">
-      <ul className="flex gap-1 overflow-x-auto px-2 pt-2 [scrollbar-width:none]">
+    <nav aria-label={ariaLabel} className="flex items-end border-b border-line bg-bg/60 backdrop-blur">
+      <ul className="flex min-w-0 flex-1 gap-1 overflow-x-auto px-2 pt-2 [scrollbar-width:none]">
         {tabs.map((t) => {
           const selected = t.id === active
           return (
@@ -54,6 +57,7 @@ export function TabBar({ tabs, active, onSelect, onClose, closeLabel, ariaLabel 
           )
         })}
       </ul>
+      {action && <div className="shrink-0 px-2 pb-1.5">{action}</div>}
     </nav>
   )
 }

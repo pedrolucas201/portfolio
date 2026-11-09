@@ -25,3 +25,5 @@ dist-ssr
 
 # Mapa de repositórios de cliente (nomes sob NDA): só na máquina do Pedro
 activity.private.json
+# Recibos do archify (têm caminhos locais): ficam fora do site
+public/arquitetura/*.json

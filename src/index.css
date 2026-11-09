@@ -49,6 +49,16 @@ body {
   animation: trace 1.2s linear infinite;
 }
 
+/* Traço que se desenha uma vez (tela limpa). Usa pathLength=1 no SVG. */
+@keyframes draw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+.draw {
+  stroke-dasharray: 1;
+  animation: draw 1.6s ease-out both;
+}
+
 @keyframes sweep {
   from { transform: translateX(-100%); }
   to { transform: translateX(100vw); }
