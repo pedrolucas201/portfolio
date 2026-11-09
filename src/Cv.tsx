@@ -34,7 +34,7 @@ function Block({ title, children }: { title: string; children: ReactNode }) {
 export function Cv({ c }: { c: Content }) {
   return (
     <main className="mx-auto max-w-[180mm] bg-white p-6 text-[10pt] leading-snug text-zinc-900 print:p-0">
-      <h1 className="text-2xl font-bold">{c.name}</h1>
+      <h1 className="text-2xl font-bold">{c.fullName}</h1>
       <p className="text-base">{c.role}</p>
       <p className="text-zinc-600">
         {c.location} · {c.availability}

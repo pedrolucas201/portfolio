@@ -80,7 +80,8 @@ export type Content = {
     cvPage: { subtitle: string; summary: string; skills: string; download: string }
     projects: string
   }
-  name: string
+  name: string // curto: sidebar e abertura
+  fullName: string // título do início e currículo
   initials: string
   role: string
   availability: string
@@ -262,6 +263,7 @@ export const content: Record<Lang, Content> = {
       projects: 'Projetos próprios',
     },
     name: 'Pedro Lucas',
+    fullName: 'Pedro Lucas Gomes da Silva',
     initials: 'PL',
     role: 'Software Engineer · Flutter · Go',
     availability: 'Disponível · remoto · tempo integral',
@@ -337,7 +339,7 @@ export const content: Record<Lang, Content> = {
         name: 'Portfólio',
         status: 'ok',
         summary:
-          'O site que você está vendo: React 19 + TypeScript, abas com #hash, Ctrl+K, CV em PDF gerado do mesmo conteúdo, atividade lida do git, testes e CI. Código aberto.',
+          'Portfólio em formato de console de monitoramento: React 19 + TypeScript, abas com #hash, Ctrl+K, CV em PDF gerado do mesmo conteúdo, atividade lida do git, testes e CI. Código aberto.',
         stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Vitest', 'GitHub Actions'],
         links: [repo('portfolio')],
       },
@@ -485,6 +487,7 @@ export const content: Record<Lang, Content> = {
       projects: 'Own projects',
     },
     name: 'Pedro Lucas',
+    fullName: 'Pedro Lucas Gomes da Silva',
     initials: 'PL',
     role: 'Software Engineer · Flutter · Go',
     availability: 'Available · remote · full-time',
@@ -559,7 +562,7 @@ export const content: Record<Lang, Content> = {
         name: 'Portfolio',
         status: 'ok',
         summary:
-          'The site you are looking at: React 19 + TypeScript, #hash tabs, Ctrl+K, a PDF resume generated from the same content, activity read from git, tests and CI. Open source.',
+          'Portfolio styled as a monitoring console: React 19 + TypeScript, #hash tabs, Ctrl+K, a PDF resume generated from the same content, activity read from git, tests and CI. Open source.',
         stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Vitest', 'GitHub Actions'],
         links: [repo('portfolio')],
       },

@@ -26,7 +26,7 @@ export function Overview({ c, commits }: Props) {
               <span aria-hidden className="size-1.5 animate-pulse-ring rounded-full bg-accent" />
               {c.availability}
             </p>
-            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{c.name}</h1>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{c.fullName}</h1>
             <p className="mt-0.5 text-lg text-fg/80">{c.role}</p>
             <p className="text-sm text-muted">{c.location}</p>
           </div>

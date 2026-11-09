@@ -75,7 +75,7 @@ export function CvPage({ c }: { c: Content }) {
               {c.initials}
             </div>
             <div>
-              <p className="text-2xl font-bold tracking-tight">{c.name}</p>
+              <p className="text-2xl font-bold tracking-tight">{c.fullName}</p>
               <p className="font-medium text-accent">{c.role}</p>
               <p className="mt-0.5 flex items-center gap-1.5 font-mono text-[12px] text-muted">
                 <Icon name="pin" className="size-3.5" />
