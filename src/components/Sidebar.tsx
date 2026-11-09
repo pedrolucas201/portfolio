@@ -9,6 +9,7 @@ type Props = {
   c: Content
   items: NavItem[]
   active: string
+  openTabs: string[]
   collapsed: boolean
   onToggle: () => void
   onPalette: () => void
@@ -16,8 +17,16 @@ type Props = {
 }
 
 // Recolhida, vira um trilho só de ícones (com o nome no title/aria-label) e o currículo continua a um clique.
-export function Sidebar({ c, items, active, collapsed, onToggle, onPalette, onLang }: Props) {
+export function Sidebar({ c, items, active, openTabs, collapsed, onToggle, onPalette, onLang }: Props) {
   const services = [...c.work, ...c.projects]
+  // Aba aberta ganha uma bolinha: azul se é a ativa, cinza se está aberta em segundo plano.
+  const openDot = (id: string, corner = false) =>
+    openTabs.includes(id) && (
+      <span
+        aria-hidden
+        className={`size-1.5 shrink-0 rounded-full ${id === active ? 'bg-accent' : 'bg-off'} ${corner ? 'absolute top-1 right-1.5' : 'ml-auto'}`}
+      />
+    )
   const hide = collapsed ? 'sr-only' : ''
   return (
     <aside
@@ -65,12 +74,13 @@ export function Sidebar({ c, items, active, collapsed, onToggle, onPalette, onLa
                 href={`#${it.id}`}
                 title={collapsed ? it.label : undefined}
                 aria-current={active === it.id ? 'true' : undefined}
-                className={`flex items-center gap-2.5 rounded-md py-1.5 text-sm transition-colors ${collapsed ? 'justify-center px-0' : 'px-3'} ${
+                className={`relative flex items-center gap-2.5 rounded-md py-1.5 text-sm transition-colors ${collapsed ? 'justify-center px-0' : 'px-3'} ${
                   active === it.id ? 'bg-accent/10 text-accent' : 'text-muted hover:bg-panel-2 hover:text-fg'
                 }`}
               >
                 <Icon name={it.icon} />
                 <span className={hide}>{it.label}</span>
+                {openDot(it.id, collapsed)}
               </a>
             </li>
           ))}
@@ -83,7 +93,11 @@ export function Sidebar({ c, items, active, collapsed, onToggle, onPalette, onLa
                 <li key={s.id}>
                   <a
                     href={`#${s.id}`}
-                    className="flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] text-muted hover:bg-panel-2 hover:text-fg"
+                    aria-current={active === s.id ? 'true' : undefined}
+                    // Serviço já tem a bolinha de status: aba aberta aparece destacando a linha.
+                    className={`flex items-center justify-between gap-2 rounded-md px-3 py-1.5 text-[13px] hover:bg-panel-2 hover:text-fg ${
+                      active === s.id ? 'bg-accent/10 text-accent' : openTabs.includes(s.id) ? 'bg-panel-2/60 text-fg' : 'text-muted'
+                    }`}
                   >
                     <span className="truncate">{s.name.split(' · ')[0]}</span>
                     <StatusDot status={s.status} />

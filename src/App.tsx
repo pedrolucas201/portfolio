@@ -199,6 +199,7 @@ export default function App() {
           c={c}
           items={nav}
           active={active}
+          openTabs={tabs}
           collapsed={collapsed}
           onToggle={toggleSidebar}
           onPalette={() => setPalette(true)}

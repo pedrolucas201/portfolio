@@ -375,9 +375,9 @@ export const content: Record<Lang, Content> = {
     ],
     education: ['Análise e Desenvolvimento de Sistemas, UNINASSAU (2026 – 2028, em andamento)', 'Português nativo · inglês intermediário'],
     about: [
-      { title: 'Trajetória', text: 'Comecei com React em projetos próprios em 2024. No fim daquele ano entrei na Virtual Vision, em Recife, mantendo o ConectaSUAS, sistema de gestão pública usado por 5 prefeituras, onde também acumulei o papel de QA do time.' },
-      { title: 'Hoje', text: 'Trabalho como PJ, remoto: na Pierfans com Laravel e em projetos da Invo com Flutter e Go, do levantamento de requisitos ao suporte depois do lançamento. Por fora, mantenho produtos meus no ar, como o Pede Direto. Curso Análise e Desenvolvimento de Sistemas na UNINASSAU.' },
-      { title: 'O que busco', text: 'Hoje eu toco os projetos sozinho. Quero entrar num time de produto, com revisão de código e gente mais experiente por perto, pra crescer junto. Remoto, tempo integral, com Flutter, Go ou React.' },
+      { title: 'Origem', text: 'Comecei na Virtual Vision, em Recife, em novembro de 2024, já em produção crítica: o ConectaSUAS, SaaS multi-tenant de gestão pública usado por 5 prefeituras. Ali aprendi a manter sistema no ar, achar causa raiz lendo log e subir hotfix com rollback planejado. Também acumulei o papel de QA do time.' },
+      { title: 'Hoje', text: 'Trabalho como PJ, remoto. Na Pierfans, evoluo uma plataforma de conteúdo por assinatura em Laravel; nos projetos da Invo, entrego apps Flutter e backends Go, do levantamento de requisitos ao suporte depois do lançamento. Por fora, mantenho produtos meus no ar, como o Pede Direto, e curso ADS na UNINASSAU.' },
+      { title: 'Como trabalho', text: 'Antes de codar, escrevo o critério de pronto, incluindo o que não pode acontecer. Causa raiz eu confiro no código e no estado real, não suponho. Teste verde só prova o que exercita: quando depende do aparelho, valido em aparelho real. E em produção sem staging, subo com o rollback pronto.' },
     ],
     method: [
       { title: 'Critério de pronto antes do código', text: 'Escrevo o que tem que acontecer, e o que não pode acontecer, antes de implementar.' },
@@ -596,9 +596,9 @@ export const content: Record<Lang, Content> = {
     ],
     education: ['Systems Analysis and Development, UNINASSAU (2026 – 2028, in progress)', 'Portuguese native · English intermediate'],
     about: [
-      { title: 'Path', text: 'I started with React on my own projects in 2024. At the end of that year I joined Virtual Vision in Recife, maintaining ConectaSUAS, a public-management system used by 5 city governments, where I also took on the team’s QA role.' },
-      { title: 'Today', text: 'I work as a remote contractor: at Pierfans with Laravel and on Invo projects with Flutter and Go, from requirements to post-launch support. On the side, I keep products of my own running, like Pede Direto. I study Systems Analysis and Development at UNINASSAU.' },
-      { title: 'What I’m looking for', text: 'Right now I run projects on my own. I want to join a product team, with code review and more experienced people around, to grow together. Remote, full-time, with Flutter, Go or React.' },
+      { title: 'Origin', text: 'I started at Virtual Vision, in Recife, in November 2024, already in critical production: ConectaSUAS, a multi-tenant public-management SaaS used by 5 city governments. There I learned to keep a system running, find root causes by reading logs and ship hotfixes with a planned rollback. I also took on the team’s QA role.' },
+      { title: 'Today', text: 'I work as a remote contractor. At Pierfans I evolve a subscription content platform in Laravel; on Invo projects I deliver Flutter apps and Go backends, from requirements to post-launch support. On the side, I keep products of my own running, like Pede Direto, and study Systems Analysis and Development at UNINASSAU.' },
+      { title: 'How I work', text: 'Before coding, I write the definition of done, including what must not happen. I check root causes in the code and the live state instead of assuming. A green test proves only what it exercises: when it depends on the device, I validate on a real device. And in production without staging, I ship with the rollback ready.' },
     ],
     method: [
       { title: 'Definition of done before code', text: 'I write down what must happen, and what must not, before implementing.' },
