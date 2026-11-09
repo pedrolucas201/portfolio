@@ -115,8 +115,9 @@ export type Content = {
 }
 
 export const EMAIL = 'devgomesss@gmail.com'
-// Só usado no link wa.me dos pedidos (ok do Pedro em 09/11/2026). Não aparece escrito no site.
+// Telefone: link wa.me dos pedidos e, escrito, na aba currículo e nos PDFs (ok do Pedro em 09/11/2026).
 export const WHATSAPP = '5581993259534'
+export const PHONE = { label: '+55 (81) 99325-9534', href: `tel:+${WHATSAPP}` }
 export const GITHUB_USER = 'pedrolucas201'
 // Repositórios públicos do gráfico de atividade e do total de commits. Lista fechada de propósito:
 // nada de repo de cliente entra por acidente.

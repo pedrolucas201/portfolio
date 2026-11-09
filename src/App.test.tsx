@@ -13,7 +13,7 @@ import { requestMailto, requestWhatsapp } from './lib/request'
 import { inProduction, usedIn } from './lib/stack'
 
 const hash = (w: string) => createHash('sha256').update(w).digest('hex').slice(0, 16)
-const FORBIDDEN = new Set(['9bc5648bcebea3ab', '83270f787967e067', '8224b82eefe8d232', '52667e8b16cdc074', 'b225a2a87fc71659', 'cee373168fe39366', '711438b7374d532d', 'fe14010b4fe83303', 'f8e6ff5696022369', 'a93e7fc04e20e480'])
+const FORBIDDEN = new Set(['9bc5648bcebea3ab', '83270f787967e067', '8224b82eefe8d232', '52667e8b16cdc074', 'cee373168fe39366', '711438b7374d532d', 'fe14010b4fe83303', 'f8e6ff5696022369', 'a93e7fc04e20e480'])
 
 beforeEach(() => {
   // Sem rede nos testes: o GitHub "cai" e o site tem que seguir de pé.

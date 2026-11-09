@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import type { Content, Service } from './content'
+import { PHONE, type Content, type Service } from './content'
 
 // Texto do link visível no papel: "github.com/pedrolucas201" em vez de "GitHub".
 const printable = (href: string) => href.replace(/^(mailto:|https?:\/\/(www\.)?)/, '')
@@ -46,6 +46,8 @@ export function Cv({ c }: { c: Content }) {
             <a href={l.href}>{printable(l.href)}</a>
           </span>
         ))}
+        {' · '}
+        <a href={PHONE.href}>{PHONE.label}</a>
       </p>
       <p className="mt-3">{c.summary}</p>
 

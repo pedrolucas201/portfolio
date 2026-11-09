@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { content, EMAIL, type Content, type Lang, type Service } from '../content'
+import { content, EMAIL, PHONE, type Content, type Lang, type Service } from '../content'
 import { DownloadIcon } from './DownloadIcon'
 import { Icon, type IconName } from './Icon'
 
@@ -92,6 +92,12 @@ export function CvPage({ c }: { c: Content }) {
                 </a>
               </li>
             ))}
+            <li>
+              <a href={PHONE.href} className="flex items-center gap-2 hover:text-accent">
+                <Icon name="phone" className="size-3.5" />
+                {PHONE.label}
+              </a>
+            </li>
           </ul>
         </div>
 
