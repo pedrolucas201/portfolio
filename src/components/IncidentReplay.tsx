@@ -4,7 +4,7 @@ import type { Content, Incident, LogLine } from '../content'
 const levelColor: Record<LogLine['level'], string> = {
   err: 'text-err',
   warn: 'text-warn',
-  ok: 'text-ok',
+  ok: 'text-accent',
   info: 'text-info',
 }
 
@@ -48,7 +48,7 @@ export function IncidentReplay({ incident: i, labels }: Props) {
           </p>
           <h3 className="mt-0.5 font-semibold">{i.title}</h3>
         </div>
-        <span className="rounded-full border border-ok/30 bg-ok/10 px-2 py-0.5 font-mono text-[11px] text-ok">{labels.resolved}</span>
+        <span className="rounded-full border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[11px] text-accent">{labels.resolved}</span>
       </header>
 
       <div className="mt-3 overflow-x-auto rounded-lg border border-line bg-bg p-3 font-mono text-[12px] leading-relaxed">
@@ -57,7 +57,7 @@ export function IncidentReplay({ incident: i, labels }: Props) {
           <p key={`${run}-${idx}`} className={`whitespace-nowrap ${idx < shown ? 'animate-rise' : 'invisible'}`}>
             <span className="text-muted">{l.t.padEnd(8, ' ')}</span>{' '}
             <span className={levelColor[l.level]}>{l.text}</span>
-            {idx === shown && !done && <span className="visible animate-blink text-ok">▍</span>}
+            {idx === shown && !done && <span className="visible animate-blink text-accent">▍</span>}
           </p>
         ))}
       </div>
@@ -69,7 +69,7 @@ export function IncidentReplay({ incident: i, labels }: Props) {
             <div key={m} className="flex h-full flex-1 flex-col items-center gap-1">
               <div className="flex w-full flex-1 items-end">
                 <div
-                  className="w-full rounded-t bg-gradient-to-t from-ok/30 to-ok transition-[height] duration-700"
+                  className="w-full rounded-t bg-gradient-to-t from-accent/30 to-accent transition-[height] duration-700"
                   style={{ height: done ? `${(m / max) * 100}%` : '4%', transitionDelay: `${idx * 90}ms` }}
                 />
               </div>
@@ -101,7 +101,7 @@ export function IncidentReplay({ incident: i, labels }: Props) {
         <button type="button" onClick={() => {
             setShown(0)
             setRun((r) => r + 1)
-          }} className="font-mono text-[12px] text-muted hover:text-ok">
+          }} className="font-mono text-[12px] text-muted hover:text-accent">
           ↻ {labels.replay}
         </button>
       </footer>

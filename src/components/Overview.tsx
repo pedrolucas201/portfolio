@@ -15,14 +15,14 @@ export function Overview({ c, commits }: Props) {
   return (
     <div className="grid gap-4">
       <div className="relative overflow-hidden rounded-2xl border border-line bg-panel/80 p-5 backdrop-blur sm:p-6">
-        <div aria-hidden className="absolute -top-24 -right-24 size-64 rounded-full bg-ok/10 blur-3xl" />
+        <div aria-hidden className="absolute -top-24 -right-24 size-64 rounded-full bg-accent/10 blur-3xl" />
         <div className="relative flex flex-wrap items-start gap-4">
-          <div className="grid size-16 shrink-0 place-items-center rounded-2xl border border-ok/40 bg-gradient-to-br from-ok/25 to-info/10 font-mono text-xl font-bold text-ok">
+          <div className="grid size-16 shrink-0 place-items-center rounded-2xl border border-accent/40 bg-gradient-to-br from-accent/25 to-info/10 font-mono text-xl font-bold text-accent">
             {c.initials}
           </div>
           <div className="min-w-0 flex-1">
-            <p className="inline-flex items-center gap-2 rounded-full border border-ok/30 bg-ok/10 px-2.5 py-0.5 font-mono text-[11px] text-ok">
-              <span aria-hidden className="size-1.5 animate-pulse-ring rounded-full bg-ok" />
+            <p className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 font-mono text-[11px] text-accent">
+              <span aria-hidden className="size-1.5 animate-pulse-ring rounded-full bg-accent" />
               {c.availability}
             </p>
             <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">{c.name}</h1>
@@ -35,12 +35,12 @@ export function Overview({ c, commits }: Props) {
             <a
               key={l.href}
               href={l.href}
-              className="rounded-lg border border-line bg-bg/60 px-3 py-2 text-sm font-medium hover:border-ok hover:text-ok"
+              className="rounded-lg border border-line bg-bg/60 px-3 py-2 text-sm font-medium hover:border-accent hover:text-accent"
             >
               {l.label}
             </a>
           ))}
-          <a href={c.cv.href} download className="rounded-lg bg-ok px-3 py-2 text-sm font-semibold text-bg hover:bg-ok/85">
+          <a href={c.cv.href} download className="rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-bg hover:bg-accent/85">
             ↓ {c.cv.label}
           </a>
         </nav>
@@ -54,7 +54,7 @@ export function Overview({ c, commits }: Props) {
             className="animate-rise rounded-xl border border-line bg-panel/80 p-4 backdrop-blur"
             style={{ animationDelay: `${i * 70}ms` }}
           >
-            <dd className="font-mono text-2xl font-semibold text-ok">{value}</dd>
+            <dd className="font-mono text-2xl font-semibold text-accent">{value}</dd>
             <dt className="mt-1 text-xs text-muted">{label}</dt>
           </div>
         ))}

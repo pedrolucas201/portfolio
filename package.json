@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc -b",
-    "cv": "node scripts/cv-pdf.mjs"
+    "cv": "node scripts/cv-pdf.mjs",
+    "snapshot": "node scripts/github-snapshot.mjs",
+    "prebuild": "node scripts/github-snapshot.mjs"
   },
   "dependencies": {
     "react": "^19.3.1",

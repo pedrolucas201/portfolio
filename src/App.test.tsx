@@ -6,6 +6,7 @@ import App from './App'
 import { content } from './content'
 import { Cv } from './Cv'
 import { careerUptime } from './lib/uptime'
+import snapshot from './github-snapshot.json'
 import { bucketByDay } from './hooks/useGithubActivity'
 
 const hash = (w: string) => createHash('sha256').update(w).digest('hex').slice(0, 16)
@@ -26,9 +27,13 @@ describe('App', () => {
     render(<App />)
     expect(screen.getByRole('status', { name: /operacionais|operational/ })).toBeTruthy()
     expect(screen.getAllByRole('link', { name: 'devgomesss@gmail.com' })[0].getAttribute('href')).toBe('mailto:devgomesss@gmail.com')
-    const cv = screen.getByRole('link', { name: /CV \(PDF\)/ })
-    expect(cv.hasAttribute('download')).toBe(true)
-    expect(cv.getAttribute('href')).toMatch(/^\/cv-(pt|en)\.pdf$/)
+    // Topo do perfil e atalho na sidebar: os dois baixam o PDF do idioma atual.
+    const cvs = screen.getAllByRole('link', { name: /CV \(PDF\)/ })
+    expect(cvs).toHaveLength(2)
+    for (const cv of cvs) {
+      expect(cv.hasAttribute('download')).toBe(true)
+      expect(cv.getAttribute('href')).toMatch(/^\/cv-(pt|en)\.pdf$/)
+    }
   })
 
   it('pular a abertura fecha e não repete na mesma sessão', () => {
@@ -53,6 +58,20 @@ describe('App', () => {
     })
     expect(writeText).toHaveBeenCalledWith('devgomesss@gmail.com')
     expect(screen.queryByRole('dialog')).toBeNull()
+  })
+
+  it('GitHub fora do ar ou no limite (403): mostra o retrato do build, não seção vazia', async () => {
+    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response('rate limited', { status: 403 }))))
+    render(<App />)
+    expect(await screen.findByText(snapshot.commits[0].message)).toBeTruthy()
+    expect(screen.getByText(/retrato de|snapshot from/)).toBeTruthy()
+    expect(screen.getAllByText(String(snapshot.total)).length).toBeGreaterThan(0)
+  })
+
+  it('rede caída também cai no retrato', async () => {
+    vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('Failed to fetch'))))
+    render(<App />)
+    expect(await screen.findByText(snapshot.commits[0].message)).toBeTruthy()
   })
 
   it('troca de idioma atualiza o lang do documento', () => {
@@ -87,9 +106,9 @@ describe('content', () => {
 
   // O que NÃO pode ir pro site nem pro CV (lista no PRD, fora do repo). Os termos ficam só como hash
   // pra que a própria guarda não publique o que ela protege.
-  it('não vaza nada da lista de privados (site e CV)', () => {
+  it('não vaza nada da lista de privados (site, CV e commits do retrato)', () => {
     const cvText = (['pt', 'en'] as const).map((l) => render(<Cv c={content[l]} />).container.textContent).join(' ')
-    const words = (JSON.stringify(content) + ' ' + cvText).toLowerCase().split(/[\s"',:;()·]+/)
+    const words = (JSON.stringify(content) + JSON.stringify(snapshot) + ' ' + cvText).toLowerCase().split(/[\s"',:;()·]+/)
     const grams = words.flatMap((w, i) => [w, `${w} ${words[i + 1] ?? ''}`])
     const leaked = grams.filter((g) => FORBIDDEN.has(hash(g)))
     expect(leaked).toEqual([])

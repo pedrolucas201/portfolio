@@ -34,7 +34,7 @@ export function Boot({ boot, name, onDone }: Props) {
       <div className="w-full max-w-md rounded-xl border border-line bg-panel p-5 font-mono text-[13px] shadow-2xl shadow-black/60">
         <p className="mb-4 flex items-center justify-between text-muted">
           <span>
-            <span className="text-ok">●</span> {name.toLowerCase().replace(' ', '.')}
+            <span className="text-accent">●</span> {name.toLowerCase().replace(' ', '.')}
             <span className="text-muted">/health</span>
           </span>
           <button type="button" onClick={onDone} className="rounded px-1 hover:text-fg">
@@ -45,17 +45,17 @@ export function Boot({ boot, name, onDone }: Props) {
           {boot.lines.map(([k, v], idx) => (
             <li key={k} className={`flex justify-between gap-4 ${idx < shown ? 'animate-rise' : 'invisible'}`}>
               <span className="text-muted">{k}</span>
-              <span className="text-ok">{v}</span>
+              <span className="text-accent">{v}</span>
             </li>
           ))}
         </ul>
         <div className="mt-4 h-1 overflow-hidden rounded bg-line">
           <div
-            className="h-full bg-ok transition-[width] duration-300"
+            className="h-full bg-accent transition-[width] duration-300"
             style={{ width: `${Math.min(100, (shown / total) * 100)}%` }}
           />
         </div>
-        <p className="mt-3 h-5 text-ok">
+        <p className="mt-3 h-5 text-accent">
           {shown >= total ? `✓ ${boot.done}` : <span className="animate-blink">▍</span>}
         </p>
       </div>

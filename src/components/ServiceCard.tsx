@@ -9,7 +9,7 @@ export function ServiceCard({ service: s, ui }: Props) {
   const [open, setOpen] = useState(false)
   const panelId = `svc-${s.id}`
   return (
-    <li id={s.id} className="scroll-mt-20 rounded-xl border border-line bg-panel/80 backdrop-blur transition-colors hover:border-ok/40">
+    <li id={s.id} className="scroll-mt-20 rounded-xl border border-line bg-panel/80 backdrop-blur transition-colors hover:border-accent/40">
       <button
         type="button"
         aria-expanded={open}
@@ -32,7 +32,7 @@ export function ServiceCard({ service: s, ui }: Props) {
             </span>
           ))}
           {(s.diagram || s.links) && (
-            <span className="ml-auto font-mono text-[11px] text-ok">
+            <span className="ml-auto font-mono text-[11px] text-accent">
               {open ? `− ${ui.service.close}` : `+ ${ui.service.open}`}
             </span>
           )}

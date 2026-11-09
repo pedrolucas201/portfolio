@@ -20,11 +20,11 @@ export function Backdrop() {
       {pulses.map((p) => (
         <span
           key={p.top}
-          className="absolute h-px w-40 bg-gradient-to-r from-transparent via-ok to-transparent opacity-60"
+          className="absolute h-px w-40 bg-gradient-to-r from-transparent via-accent to-transparent opacity-60"
           style={{ top: p.top, animation: `sweep ${p.dur} linear ${p.delay} infinite` }}
         />
       ))}
-      <div className="absolute -top-40 left-1/4 size-[36rem] rounded-full bg-ok/5 blur-3xl" />
+      <div className="absolute -top-40 left-1/4 size-[36rem] rounded-full bg-accent/5 blur-3xl" />
     </div>
   )
 }

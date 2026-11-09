@@ -49,7 +49,7 @@ export type Content = {
     kpi: { operational: string; commits: string; incidents: string; stack: string }
     service: { open: string; close: string; architecture: string }
     incident: { symptom: string; cause: string; fix: string; replay: string; backoff: string; resolved: string }
-    deploys: { title: string; empty: string; activity: string }
+    deploys: { title: string; snapshot: string; activity: string }
     palette: { hint: string; placeholder: string; copyEmail: string; copied: string; download: string; none: string }
     stackProd: string
     stackKnown: string
@@ -176,7 +176,7 @@ export const content: Record<Lang, Content> = {
         backoff: 'espera entre recargas (min)',
         resolved: 'resolvido',
       },
-      deploys: { title: 'Últimos commits', empty: 'GitHub indisponível agora.', activity: 'atividade · 90 dias' },
+      deploys: { title: 'Últimos commits', snapshot: 'retrato de', activity: 'atividade · 90 dias' },
       palette: {
         hint: 'comandos',
         placeholder: 'Ir para, copiar e-mail, baixar CV…',
@@ -338,7 +338,7 @@ export const content: Record<Lang, Content> = {
         backoff: 'wait between reloads (min)',
         resolved: 'resolved',
       },
-      deploys: { title: 'Latest commits', empty: 'GitHub unavailable right now.', activity: 'activity · 90 days' },
+      deploys: { title: 'Latest commits', snapshot: 'snapshot from', activity: 'activity · 90 days' },
       palette: {
         hint: 'commands',
         placeholder: 'Go to, copy email, download CV…',

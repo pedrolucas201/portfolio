@@ -1,7 +1,7 @@
 import type { Status } from '../content'
 
 const color: Record<Status, string> = {
-  ok: 'bg-ok',
+  ok: 'bg-accent text-accent',
   testing: 'bg-warn',
   ended: 'bg-off',
   off: 'bg-off',

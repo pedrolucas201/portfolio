@@ -103,7 +103,7 @@ export default function App() {
           <TopBar c={c} onPalette={() => setPalette(true)} onLang={toggleLang} />
           <main className="mx-auto max-w-5xl px-4 pb-24 sm:px-8">
             <section id="overview" aria-label={c.ui.nav.overview} className="scroll-mt-16 pt-6 sm:pt-10">
-              <Overview c={c} commits={activity && activity !== 'error' ? activity.commits.length : null} />
+              <Overview c={c} commits={activity?.total ?? null} />
             </section>
 
             <Section id="work" title={c.ui.nav.work}>
@@ -146,7 +146,7 @@ export default function App() {
                       {items.map((t) => (
                         <li
                           key={t}
-                          className={`rounded-md border px-2 py-1 font-mono text-[12px] ${prod ? 'border-ok/30 bg-ok/10 text-ok' : 'border-line text-muted'}`}
+                          className={`rounded-md border px-2 py-1 font-mono text-[12px] ${prod ? 'border-accent/30 bg-accent/10 text-accent' : 'border-line text-muted'}`}
                         >
                           {t}
                         </li>
@@ -174,7 +174,7 @@ export default function App() {
         />
       )}
       {toast && (
-        <p role="status" className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 animate-rise rounded-lg border border-ok/40 bg-panel px-4 py-2 font-mono text-sm text-ok">
+        <p role="status" className="fixed bottom-6 left-1/2 z-50 -translate-x-1/2 animate-rise rounded-lg border border-accent/40 bg-panel px-4 py-2 font-mono text-sm text-accent">
           ✓ {toast}
         </p>
       )}

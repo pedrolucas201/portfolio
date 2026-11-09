@@ -14,7 +14,7 @@ export function Diagram({ data, title }: { data: DiagramData; title: string }) {
             return (
               <g key={e.from + e.to}>
                 <line x1={`${a.x}%`} y1={`${a.y}%`} x2={`${b.x}%`} y2={`${b.y}%`} stroke="var(--color-line)" strokeWidth={2} />
-                <line className="flow" x1={`${a.x}%`} y1={`${a.y}%`} x2={`${b.x}%`} y2={`${b.y}%`} stroke="var(--color-ok)" strokeWidth={1.5} />
+                <line className="flow" x1={`${a.x}%`} y1={`${a.y}%`} x2={`${b.x}%`} y2={`${b.y}%`} stroke="var(--color-accent)" strokeWidth={1.5} />
               </g>
             )
           })}
