@@ -325,7 +325,7 @@ export const content: Record<Lang, Content> = {
       },
       {
         id: 'portfolio',
-        name: 'Este portfólio',
+        name: 'Portfólio',
         status: 'ok',
         summary:
           'O site que você está vendo: React 19 + TypeScript, abas com #hash, Ctrl+K, CV em PDF gerado do mesmo conteúdo, atividade lida do git, testes e CI. Código aberto.',
@@ -538,7 +538,7 @@ export const content: Record<Lang, Content> = {
       },
       {
         id: 'portfolio',
-        name: 'This portfolio',
+        name: 'Portfolio',
         status: 'ok',
         summary:
           'The site you are looking at: React 19 + TypeScript, #hash tabs, Ctrl+K, a PDF resume generated from the same content, activity read from git, tests and CI. Open source.',
