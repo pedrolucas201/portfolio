@@ -1,4 +1,6 @@
-export type Tab = { id: string; label: string; icon: string }
+import { Icon, type IconName } from './Icon'
+
+export type Tab = { id: string; label: string; icon: IconName }
 
 type Props = {
   tabs: Tab[]
@@ -31,8 +33,8 @@ export function TabBar({ tabs, active, onSelect, onClose, closeLabel, ariaLabel 
                 onClick={() => onSelect(t.id)}
                 className="flex items-center gap-2 py-1.5 pr-1 pl-3 lowercase"
               >
-                <span aria-hidden className={`font-mono text-[12px] ${selected ? 'text-accent' : ''}`}>
-                  {t.icon}
+                <span className={selected ? 'text-accent' : ''}>
+                  <Icon name={t.icon} className="size-3.5" />
                 </span>
                 {t.label}
               </button>

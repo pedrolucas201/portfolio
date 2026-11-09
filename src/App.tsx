@@ -6,9 +6,12 @@ import { CommandPalette, type Command } from './components/CommandPalette'
 import { Deploys } from './components/Deploys'
 import { IncidentReplay } from './components/IncidentReplay'
 import { Overview } from './components/Overview'
-import { ContactPage, CvPage, FreelaPage, MethodPage, NowPage } from './components/Pages'
+import { CvPage } from './components/CvPage'
+import { ContactPage, MethodPage, NowPage } from './components/Pages'
+import { RequestPage } from './components/RequestPage'
 import { Section } from './components/Section'
 import { ServiceCard } from './components/ServiceCard'
+import type { IconName } from './components/Icon'
 import { Sidebar, type NavItem } from './components/Sidebar'
 import { TabBar, type Tab } from './components/TabBar'
 import { TopBar } from './components/TopBar'
@@ -27,20 +30,20 @@ function shouldBoot(): boolean {
   }
 }
 
-const SECTIONS = ['overview', 'work', 'projects', 'now', 'method', 'incidents', 'deploys', 'stack', 'cv', 'freela', 'contact'] as const
+const SECTIONS = ['overview', 'work', 'projects', 'now', 'method', 'incidents', 'deploys', 'stack', 'cv', 'requests', 'contact'] as const
 type SectionId = (typeof SECTIONS)[number]
-const ICON: Record<SectionId, string> = {
-  overview: '◉',
-  work: '▤',
-  projects: '◇',
-  now: '∿',
-  method: '⌘',
-  incidents: '△',
-  deploys: '⇡',
-  stack: '≡',
-  cv: '▧',
-  freela: '✦',
-  contact: '@',
+const ICON: Record<SectionId, IconName> = {
+  overview: 'user',
+  work: 'briefcase',
+  projects: 'folder',
+  now: 'activity',
+  method: 'checks',
+  incidents: 'alert',
+  deploys: 'commit',
+  stack: 'layers',
+  cv: 'file',
+  requests: 'mail',
+  contact: 'at',
 }
 // O console já abre "povoado": quem chega vê o resumo e as abas principais sem procurar.
 const START_TABS = ['overview', 'work', 'projects', 'now']
@@ -58,7 +61,7 @@ export default function App() {
   const { tabs, active, open, close } = useTabs(START_TABS, isTab)
   const c = content[lang]
 
-  const nav: NavItem[] = useMemo(() => SECTIONS.map((id) => ({ id, label: c.ui.nav[id] })), [c])
+  const nav: NavItem[] = useMemo(() => SECTIONS.map((id) => ({ id, label: c.ui.nav[id], icon: ICON[id] })), [c])
   const service = (id: string) => [...c.work, ...c.projects].find((s) => s.id === id)
 
   const toggleLang = useCallback(() => setLang((l) => (l === 'pt' ? 'en' : 'pt')), [])
@@ -102,7 +105,7 @@ export default function App() {
   const tabBar: Tab[] = tabs.map((id) =>
     isSection(id)
       ? { id, label: c.ui.nav[id], icon: ICON[id] }
-      : { id, label: service(id)!.name.split(' · ')[0], icon: '●' },
+      : { id, label: service(id)!.name.split(' · ')[0], icon: 'server' },
   )
 
   const commands: Command[] = [
@@ -137,7 +140,7 @@ export default function App() {
     now: () => <NowPage c={c} />,
     method: () => <MethodPage c={c} />,
     cv: () => <CvPage c={c} />,
-    freela: () => <FreelaPage c={c} />,
+    requests: () => <RequestPage c={c} />,
     contact: () => <ContactPage c={c} onCopy={copyEmail} />,
     incidents: () => (
       <Section id="incidents" title={c.ui.nav.incidents}>

@@ -56,7 +56,7 @@ export type Content = {
       deploys: string
       stack: string
       cv: string
-      freela: string
+      requests: string
       contact: string
     }
     contact: { intro: string; copy: string }
@@ -71,6 +71,7 @@ export type Content = {
     stackKnown: string
     education: string
     cvWork: string
+    cvPage: { subtitle: string; summary: string; skills: string; download: string }
     projects: string
   }
   name: string
@@ -88,10 +89,26 @@ export type Content = {
   education: string[]
   now: { updated: string; items: string[] }
   method: { title: string; text: string }[]
-  freela: { intro: string; offers: string[]; example: string; cta: Link }
+  request: {
+    title: string
+    intro: string
+    typeLabel: string
+    types: string[]
+    nameLabel: string
+    messageLabel: string
+    preview: string
+    from: string
+    empty: string
+    send: string
+    sendWhatsapp: string
+    note: string
+    signature: string
+  }
 }
 
 export const EMAIL = 'devgomesss@gmail.com'
+// Só usado no link wa.me dos pedidos (ok do Pedro em 09/11/2026). Não aparece escrito no site.
+export const WHATSAPP = '5581993259534'
 export const GITHUB_USER = 'pedrolucas201'
 // Repositórios públicos cujos commits aparecem em "deploys recentes". Lista fechada de propósito:
 // nada de repo de cliente entra por acidente.
@@ -171,7 +188,7 @@ export const content: Record<Lang, Content> = {
         deploys: 'Deploys',
         stack: 'Stack',
         cv: 'Currículo',
-        freela: 'Freela',
+        requests: 'Pedidos',
         contact: 'Contato',
       },
       contact: { intro: 'Respondo por e-mail ou pelo LinkedIn.', copy: 'copiar' },
@@ -205,7 +222,7 @@ export const content: Record<Lang, Content> = {
       deploys: { title: 'Últimos commits', snapshot: 'retrato de', activity: 'atividade · 90 dias' },
       palette: {
         hint: 'comandos',
-        placeholder: 'Ir para, copiar e-mail, baixar CV…',
+        placeholder: 'Ir para, copiar e-mail, baixar currículo…',
         copyEmail: 'Copiar e-mail',
         copied: 'e-mail copiado',
         download: 'Baixar currículo',
@@ -215,6 +232,7 @@ export const content: Record<Lang, Content> = {
       stackKnown: 'Também trabalho com',
       education: 'Formação',
       cvWork: 'Experiência',
+      cvPage: { subtitle: 'Mesmo conteúdo do site, em formato de currículo.', summary: 'Resumo', skills: 'Competências', download: 'Baixar PDF' },
       projects: 'Projetos próprios',
     },
     name: 'Pedro Lucas',
@@ -225,7 +243,7 @@ export const content: Record<Lang, Content> = {
     summary:
       'Desenvolvo e mantenho sistemas em produção do levantamento de requisitos ao suporte pós-lançamento: apps Flutter, backends Go e Laravel.',
     contacts,
-    cv: { label: 'CV (PDF)', href: '/cv-pt.pdf' },
+    cv: { label: 'Currículo (PDF)', href: '/cv-pt.pdf' },
     work: [
       {
         id: 'pierfans',
@@ -340,16 +358,20 @@ export const content: Record<Lang, Content> = {
       { title: 'IA como apoio', text: 'Uso IA como ferramenta, sempre revisando o diff e os testes.' },
       { title: 'Falha também é resultado', text: 'Registro o que foi tentado, por que falhou e o que faria reabrir.' },
     ],
-    freela: {
-      intro: 'Faço projeto sob medida pra quem precisa de um sistema rodando de verdade, do levantamento de requisitos ao suporte depois do lançamento.',
-      offers: [
-        'Sites e sistemas web com painel administrativo',
-        'Apps Flutter (Android e web)',
-        'Backends e integrações em Go ou Laravel: pagamento, webhooks, nota fiscal',
-        'Manutenção e correção de sistema que já está em produção',
-      ],
-      example: 'Exemplo no ar: o Pede Direto, site de pedidos da La Carne Burger.',
-      cta: { label: 'Pedir orçamento por e-mail', href: `mailto:${EMAIL}?subject=Or%C3%A7amento%20de%20projeto` },
+    request: {
+      title: 'Abra um pedido',
+      intro: 'Projeto pra construir, vaga ou uma ideia ainda crua. Não tem servidor aqui: o site só monta a mensagem, e ela abre pronta no seu WhatsApp ou no seu e-mail.',
+      typeLabel: 'Tipo',
+      types: ['Projeto', 'Vaga', 'Ideia', 'Outro'],
+      nameLabel: 'Seu nome',
+      messageLabel: 'O que você precisa, e pra quando?',
+      preview: 'prévia do chamado',
+      from: 'de',
+      empty: 'escreva o pedido pra liberar o envio',
+      send: 'Enviar por e-mail',
+      sendWhatsapp: 'Enviar no WhatsApp',
+      note: 'Nada é guardado: o envio acontece no seu próprio app.',
+      signature: 'enviado pelo portfólio',
     },
   },
   en: {
@@ -370,7 +392,7 @@ export const content: Record<Lang, Content> = {
         deploys: 'Deploys',
         stack: 'Stack',
         cv: 'Resume',
-        freela: 'Freelance',
+        requests: 'Requests',
         contact: 'Contact',
       },
       contact: { intro: 'I reply by email or on LinkedIn.', copy: 'copy' },
@@ -404,7 +426,7 @@ export const content: Record<Lang, Content> = {
       deploys: { title: 'Latest commits', snapshot: 'snapshot from', activity: 'activity · 90 days' },
       palette: {
         hint: 'commands',
-        placeholder: 'Go to, copy email, download CV…',
+        placeholder: 'Go to, copy email, download resume…',
         copyEmail: 'Copy email',
         copied: 'email copied',
         download: 'Download resume',
@@ -414,6 +436,7 @@ export const content: Record<Lang, Content> = {
       stackKnown: 'Also work with',
       education: 'Education',
       cvWork: 'Experience',
+      cvPage: { subtitle: 'Same content as the site, in resume format.', summary: 'Summary', skills: 'Skills', download: 'Download PDF' },
       projects: 'Own projects',
     },
     name: 'Pedro Lucas',
@@ -424,7 +447,7 @@ export const content: Record<Lang, Content> = {
     summary:
       'I build and run production systems from requirements to post-launch support: Flutter apps, Go and Laravel backends.',
     contacts,
-    cv: { label: 'CV (PDF)', href: '/cv-en.pdf' },
+    cv: { label: 'Resume (PDF)', href: '/cv-en.pdf' },
     work: [
       {
         id: 'pierfans',
@@ -537,16 +560,20 @@ export const content: Record<Lang, Content> = {
       { title: 'AI as support', text: 'I use AI as a tool, always reviewing the diff and the tests.' },
       { title: 'Failure is a result too', text: 'I log what was tried, why it failed and what would reopen it.' },
     ],
-    freela: {
-      intro: 'I build custom projects for people who need a system that actually runs, from requirements to post-launch support.',
-      offers: [
-        'Websites and web systems with an admin dashboard',
-        'Flutter apps (Android and web)',
-        'Go or Laravel backends and integrations: payments, webhooks, invoicing',
-        'Maintenance and fixes for systems already in production',
-      ],
-      example: 'Live example: Pede Direto, the ordering site of La Carne Burger.',
-      cta: { label: 'Ask for a quote by email', href: `mailto:${EMAIL}?subject=Project%20quote` },
+    request: {
+      title: 'Open a request',
+      intro: 'A project to build, a role or a rough idea. There’s no server here: the site only drafts the message, and it opens ready in your WhatsApp or email.',
+      typeLabel: 'Type',
+      types: ['Project', 'Role', 'Idea', 'Other'],
+      nameLabel: 'Your name',
+      messageLabel: 'What do you need, and by when?',
+      preview: 'ticket preview',
+      from: 'from',
+      empty: 'write your request to enable sending',
+      send: 'Send by email',
+      sendWhatsapp: 'Send on WhatsApp',
+      note: 'Nothing is stored: sending happens in your own app.',
+      signature: 'sent from the portfolio',
     },
   },
 }

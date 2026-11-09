@@ -8,6 +8,7 @@ import { Cv } from './Cv'
 import { careerUptime } from './lib/uptime'
 import snapshot from './github-snapshot.json'
 import { bucketByDay } from './hooks/useGithubActivity'
+import { requestMailto, requestWhatsapp } from './lib/request'
 
 const hash = (w: string) => createHash('sha256').update(w).digest('hex').slice(0, 16)
 const FORBIDDEN = new Set(['9bc5648bcebea3ab', '83270f787967e067', '8224b82eefe8d232', '52667e8b16cdc074', 'b225a2a87fc71659', 'cee373168fe39366', '711438b7374d532d', 'fe14010b4fe83303', 'f8e6ff5696022369', 'a93e7fc04e20e480'])
@@ -37,7 +38,7 @@ describe('App', () => {
     expect(screen.getByRole('status', { name: /operacionais|operational/ })).toBeTruthy()
     expect(screen.getAllByRole('link', { name: 'devgomesss@gmail.com' })[0].getAttribute('href')).toBe('mailto:devgomesss@gmail.com')
     // Topo do perfil e atalho na sidebar: os dois baixam o PDF do idioma atual.
-    const cvs = screen.getAllByRole('link', { name: /CV \(PDF\)|Baixar currículo|Download resume/ })
+    const cvs = screen.getAllByRole('link', { name: /Currículo \(PDF\)|Resume \(PDF\)|Baixar currículo|Download resume/ })
     expect(cvs).toHaveLength(2)
     for (const cv of cvs) {
       expect(cv.hasAttribute('download')).toBe(true)
@@ -118,6 +119,18 @@ describe('lógica', () => {
     const c = (date: string) => ({ repo: 'r', sha: 'x', message: 'm', url: '', date })
     const days = bucketByDay([c('2026-11-09T10:00:00Z'), c('2026-11-09T01:00:00Z'), c('2026-11-07T12:00:00Z'), c('2025-01-01T00:00:00Z')], now, 5)
     expect(days).toEqual([0, 0, 1, 0, 2])
+  })
+
+  it('pedido vira link de WhatsApp e de e-mail com a mensagem intacta', () => {
+    const draft = { type: 'Projeto', name: 'Ana & Cia', message: 'App de pedidos\nprazo: março' }
+    const wa = new URL(requestWhatsapp(draft, 'assinatura'))
+    expect(wa.host).toBe('wa.me')
+    expect(wa.searchParams.get('text')).toBe('[Projeto] Ana & Cia\n\nApp de pedidos\nprazo: março\n\nAna & Cia · assinatura')
+    const mail = requestMailto(draft, 'assinatura')
+    expect(mail.startsWith('mailto:devgomesss@gmail.com?')).toBe(true)
+    const params = new URLSearchParams(mail.split('?')[1])
+    expect(params.get('subject')).toBe('[Projeto] Ana & Cia')
+    expect(params.get('body')).toBe('App de pedidos\nprazo: março\n\nAna & Cia · assinatura')
   })
 
   it('uptime de carreira conta desde nov/2024', () => {

@@ -1,8 +1,9 @@
 import type { Content } from '../content'
 import { DownloadIcon } from './DownloadIcon'
+import { Icon, type IconName } from './Icon'
 import { StatusDot } from './StatusDot'
 
-export type NavItem = { id: string; label: string }
+export type NavItem = { id: string; label: string; icon: IconName }
 
 type Props = { c: Content; items: NavItem[]; active: string; onPalette: () => void; onLang: () => void }
 
@@ -38,10 +39,11 @@ export function Sidebar({ c, items, active, onPalette, onLang }: Props) {
               <a
                 href={`#${it.id}`}
                 aria-current={active === it.id ? 'true' : undefined}
-                className={`block rounded-md px-3 py-1.5 text-sm transition-colors ${
+                className={`flex items-center gap-2.5 rounded-md px-3 py-1.5 text-sm transition-colors ${
                   active === it.id ? 'bg-accent/10 text-accent' : 'text-muted hover:bg-panel-2 hover:text-fg'
                 }`}
               >
+                <Icon name={it.icon} />
                 {it.label}
               </a>
             </li>
