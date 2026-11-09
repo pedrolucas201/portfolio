@@ -80,9 +80,6 @@ export function NowPage({ c, lang, onOpen, activity }: Props) {
             )
           })}
         </ul>
-        <p className="mt-3 text-center font-mono text-[11px] text-muted">
-          {p.generated} · {fmt.format(new Date((snapshot as { reposAt?: string }).reposAt ?? snapshot.generatedAt))}
-        </p>
       </div>
 
       <div className="mt-4 rounded-xl border border-line bg-panel/80 p-4 backdrop-blur">

@@ -147,6 +147,17 @@ describe('lógica', () => {
     expect(inProduction(content.pt, 'Node.js')).toBe(false)
   })
 
+  it('stack: tecnologia implícita conta (Flutter → Dart) e nada "em produção" fica sem projeto', () => {
+    const ids = (t: string) => usedIn(content.pt, t).map((s) => s.id)
+    expect(ids('Dart')).toEqual(['invo'])
+    expect(ids('PHP')).toEqual(['pierfans'])
+    for (const lang of ['pt', 'en'] as const) {
+      for (const tech of content[lang].stackGroups.flatMap((g) => g.items)) {
+        if (inProduction(content[lang], tech)) expect(usedIn(content[lang], tech), tech).not.toHaveLength(0)
+      }
+    }
+  })
+
   it('uptime de carreira conta desde nov/2024', () => {
     expect(careerUptime(new Date(2026, 10, 9))).toBe('2y 0m')
     expect(careerUptime(new Date(2025, 4, 1))).toBe('0y 6m')
