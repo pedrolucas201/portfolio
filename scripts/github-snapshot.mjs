@@ -1,39 +1,94 @@
-// Grava src/github-snapshot.json com os commits públicos atuais. O site mostra esse retrato quando a
-// API do GitHub falha ao vivo (limite de 60/h sem token, rede, 403/429).
-// Roda no prebuild. Se a API falhar aqui também, mantém o arquivo anterior e não quebra o build.
-import { readFileSync, writeFileSync } from 'node:fs'
+// Grava src/github-snapshot.json no build:
+//  - commits públicos agregados (fallback da aba deploys quando a API ao vivo falha);
+//  - atividade por repositório da aba "agora" (inclui repo privado: só contagem e datas, NUNCA mensagem).
+// Roda no prebuild. O que falhar mantém o valor anterior, sem quebrar o build.
+// Repo privado precisa de token: GITHUB_TOKEN, ou o `gh auth token` da máquina. Sem token (ex.: Vercel),
+// o repo privado fica com o retrato anterior.
+import { execSync } from 'node:child_process'
+import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 
 const USER = 'pedrolucas201'
-const REPOS = readFileSync('src/content.ts', 'utf8').match(/PUBLIC_REPOS = \[([^\]]+)\]/)[1].match(/'([^']+)'/g).map((s) => s.slice(1, -1))
+const FILE = 'src/github-snapshot.json'
+const listFrom = (name) =>
+  readFileSync('src/content.ts', 'utf8')
+    .match(new RegExp(`${name} = \\[([^\\]]+)\\]`))[1]
+    .match(/'([^']+)'/g)
+    .map((s) => s.slice(1, -1))
+const PUBLIC = listFrom('PUBLIC_REPOS')
+const ACTIVITY = listFrom('ACTIVITY_REPOS')
 const DAYS = 90
 const now = new Date()
 const since = new Date(now.getTime() - DAYS * 86_400_000).toISOString()
 
+function token() {
+  if (process.env.GITHUB_TOKEN) return process.env.GITHUB_TOKEN
+  try {
+    return execSync('gh auth token', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()
+  } catch {
+    return ''
+  }
+}
+const auth = token()
+const headers = auth ? { Authorization: `Bearer ${auth}` } : {}
+
+async function commits(repo) {
+  const res = await fetch(`https://api.github.com/repos/${USER}/${repo}/commits?per_page=100&since=${since}`, { headers })
+  if (res.status === 404) return null // não existe (ainda) ou é privado sem token
+  if (!res.ok) throw new Error(`${repo}: HTTP ${res.status}`)
+  return (await res.json()).map((c) => ({
+    repo,
+    sha: c.sha.slice(0, 7),
+    message: c.commit.message.split('\n')[0],
+    date: c.commit.author.date,
+    url: c.html_url,
+  }))
+}
+
+async function isPrivate(repo) {
+  const res = await fetch(`https://api.github.com/repos/${USER}/${repo}`, { headers })
+  return res.ok ? (await res.json()).private : true
+}
+
+const previous = existsSync(FILE) ? JSON.parse(readFileSync(FILE, 'utf8')) : {}
+const out = { ...previous }
+
 try {
-  const lists = await Promise.all(
-    REPOS.map(async (repo) => {
-      const res = await fetch(`https://api.github.com/repos/${USER}/${repo}/commits?per_page=100&since=${since}`)
-      if (res.status === 404) return [] // repo ainda não existe
-      if (!res.ok) throw new Error(`${repo}: HTTP ${res.status}`)
-      return (await res.json()).map((c) => ({
-        repo,
-        sha: c.sha.slice(0, 7),
-        message: c.commit.message.split('\n')[0],
-        date: c.commit.author.date,
-        url: c.html_url,
-      }))
-    }),
-  )
-  const commits = lists.flat().sort((a, b) => b.date.localeCompare(a.date))
-  if (!commits.length) throw new Error('nenhum commit')
+  const lists = await Promise.all(PUBLIC.map(commits))
+  const all = lists.flat().filter(Boolean).sort((a, b) => b.date.localeCompare(a.date))
+  if (!all.length) throw new Error('nenhum commit')
   const perDay = new Array(DAYS).fill(0)
-  for (const c of commits) {
+  for (const c of all) {
     const age = Math.floor((now - new Date(c.date)) / 86_400_000)
     if (age >= 0 && age < DAYS) perDay[DAYS - 1 - age]++
   }
-  const snapshot = { generatedAt: now.toISOString(), total: commits.length, perDay, commits: commits.slice(0, 6) }
-  writeFileSync('src/github-snapshot.json', JSON.stringify(snapshot, null, 2) + '\n')
-  console.log(`github-snapshot: ${commits.length} commits`)
+  Object.assign(out, { generatedAt: now.toISOString(), total: all.length, perDay, commits: all.slice(0, 6) })
+  console.log(`github-snapshot: ${all.length} commits públicos`)
 } catch (e) {
-  console.warn(`github-snapshot: mantido o anterior (${e.message})`)
+  console.warn(`github-snapshot: commits públicos mantidos (${e.message})`)
 }
+
+out.repos = { ...(previous.repos ?? {}) }
+for (const repo of ACTIVITY) {
+  try {
+    const list = await commits(repo)
+    if (!list) {
+      console.warn(`github-snapshot: ${repo} inacessível, mantido o anterior`)
+      continue
+    }
+    const priv = await isPrivate(repo)
+    out.repos[repo] = {
+      private: priv,
+      total: list.length,
+      capped: list.length === 100,
+      lastDate: list[0]?.date ?? null,
+      // Repo privado: só a data. Mensagem e link nunca saem daqui.
+      recent: list.slice(0, 3).map((c) => (priv ? { date: c.date } : { date: c.date, message: c.message, url: c.url })),
+    }
+    console.log(`github-snapshot: ${repo} ${list.length} commits${priv ? ' (privado)' : ''}`)
+  } catch (e) {
+    console.warn(`github-snapshot: ${repo} mantido o anterior (${e.message})`)
+  }
+}
+out.reposAt = now.toISOString()
+
+writeFileSync(FILE, JSON.stringify(out, null, 2) + '\n')

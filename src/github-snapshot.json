@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T03:49:23.735Z",
+  "generatedAt": "2026-11-09T04:12:53.902Z",
   "total": 105,
   "perDay": [
     0,
@@ -81,8 +81,8 @@
     0,
     24,
     7,
-    10,
-    9,
+    14,
+    5,
     0,
     0,
     0,
@@ -136,5 +136,68 @@
       "date": "2026-10-30T04:19:55Z",
       "url": "https://github.com/pedrolucas201/pede-direto/commit/57f09014e01bc1d3dd553e777f6063ec1172a101"
     }
-  ]
+  ],
+  "repos": {
+    "pede-direto": {
+      "private": false,
+      "total": 100,
+      "capped": true,
+      "lastDate": "2026-11-09T02:35:41Z",
+      "recent": [
+        {
+          "date": "2026-11-09T02:35:41Z",
+          "message": "Merge pull request #36 from pedrolucas201/fix/painel-app-check-travado",
+          "url": "https://github.com/pedrolucas201/pede-direto/commit/6dfa04ef8c0ebf4d4a49f0d90c4e30be44501e1f"
+        },
+        {
+          "date": "2026-11-09T02:04:05Z",
+          "message": "fix(painel): App Check travado (403) recarrega sozinho com espera crescente",
+          "url": "https://github.com/pedrolucas201/pede-direto/commit/41f3b893631628aea67b079652e72bafdacbf14f"
+        },
+        {
+          "date": "2026-10-30T19:04:54Z",
+          "message": "Merge pull request #35 from pedrolucas201/feat/nutella-adicional",
+          "url": "https://github.com/pedrolucas201/pede-direto/commit/64fb34dfd35f32f014b4b96edb70c216880607cd"
+        }
+      ]
+    },
+    "dashunlock": {
+      "private": false,
+      "total": 5,
+      "capped": false,
+      "lastDate": "2026-10-28T18:01:13Z",
+      "recent": [
+        {
+          "date": "2026-10-28T18:01:13Z",
+          "message": "docs: README novo com o que faz, como funciona e como rodar",
+          "url": "https://github.com/pedrolucas201/dashunlock/commit/a0b5b58c2e2be31cf5f7f2b6392c4b24b8425674"
+        },
+        {
+          "date": "2026-10-20T20:59:22Z",
+          "message": "Rename to DashUnlock (package io.dashunlock)",
+          "url": "https://github.com/pedrolucas201/dashunlock/commit/a73ce0896339cbd6e3306857802a3f8cdcd9089d"
+        },
+        {
+          "date": "2026-10-20T20:52:16Z",
+          "message": "Report: timing log, auto-save last report, one launcher query instead of one per app",
+          "url": "https://github.com/pedrolucas201/dashunlock/commit/52e1fda41c5dc414eb99531bc9222f5d5ab5e5e6"
+        }
+      ]
+    },
+    "gas-manager": {
+      "private": true,
+      "total": 2,
+      "capped": false,
+      "lastDate": "2026-10-28T18:13:30Z",
+      "recent": [
+        {
+          "date": "2026-10-28T18:13:30Z"
+        },
+        {
+          "date": "2026-10-28T18:06:39Z"
+        }
+      ]
+    }
+  },
+  "reposAt": "2026-11-09T04:12:53.902Z"
 }

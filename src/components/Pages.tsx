@@ -4,24 +4,6 @@ import { Section } from './Section'
 
 const card = 'rounded-xl border border-line bg-panel/80 p-4 backdrop-blur'
 
-export function NowPage({ c }: { c: Content }) {
-  return (
-    <Section id="now" title={c.ui.nav.now}>
-      <div className={card}>
-        <p className="mb-3 font-mono text-[11px] text-muted">{c.now.updated}</p>
-        <ul className="space-y-2.5">
-          {c.now.items.map((item) => (
-            <li key={item} className="flex gap-3 leading-relaxed">
-              <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </Section>
-  )
-}
-
 export function MethodPage({ c }: { c: Content }) {
   return (
     <Section id="method" title={c.ui.nav.method}>

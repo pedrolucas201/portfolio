@@ -161,6 +161,13 @@ describe('content', () => {
     expect(content.en.incidents[0].log.length).toBe(content.pt.incidents[0].log.length)
   })
 
+  it('retrato do git: repositório privado só tem data, nunca mensagem nem link', () => {
+    const repos = (snapshot as { repos?: Record<string, { private: boolean; recent: object[] }> }).repos ?? {}
+    for (const r of Object.values(repos).filter((r) => r.private)) {
+      for (const commit of r.recent) expect(Object.keys(commit)).toEqual(['date'])
+    }
+  })
+
   // O que NÃO pode ir pro site nem pro CV (lista no PRD, fora do repo). Os termos ficam só como hash
   // pra que a própria guarda não publique o que ela protege.
   it('não vaza nada da lista de privados (site, CV e commits do retrato)', () => {

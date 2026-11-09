@@ -7,7 +7,8 @@ import { Deploys } from './components/Deploys'
 import { IncidentReplay } from './components/IncidentReplay'
 import { Overview } from './components/Overview'
 import { CvPage } from './components/CvPage'
-import { ContactPage, MethodPage, NowPage } from './components/Pages'
+import { NowPage } from './components/NowPage'
+import { ContactPage, MethodPage } from './components/Pages'
 import { RequestPage } from './components/RequestPage'
 import { Section } from './components/Section'
 import { ServiceCard } from './components/ServiceCard'
@@ -138,7 +139,7 @@ export default function App() {
         </ul>
       </Section>
     ),
-    now: () => <NowPage c={c} />,
+    now: () => <NowPage c={c} lang={lang === 'pt' ? 'pt-BR' : 'en'} onOpen={open} />,
     method: () => <MethodPage c={c} />,
     cv: () => <CvPage c={c} />,
     requests: () => <RequestPage c={c} />,
