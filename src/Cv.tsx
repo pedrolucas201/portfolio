@@ -15,6 +15,7 @@ function Entry({ s }: { s: Service }) {
       <p>{s.summary}</p>
       <p className="text-zinc-600">
         {s.stack.join(' · ')}
+        {s.live && ` · ${printable(s.live)}`}
         {s.links?.map((l) => ` · ${printable(l.href)}`)}
       </p>
     </div>

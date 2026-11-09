@@ -17,8 +17,8 @@ function Entry({ s }: { s: Service }) {
       <header className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
         <h4 className="font-semibold">
           {s.name}
-          {s.links?.[0] && (
-            <a href={s.links[0].href} aria-label={s.links[0].label} className="ml-1.5 text-muted hover:text-accent">
+          {(s.live || s.links?.[0]) && (
+            <a href={s.live ?? s.links![0].href} aria-label={s.live ?? s.links![0].label} className="ml-1.5 text-muted hover:text-accent">
               ↗
             </a>
           )}

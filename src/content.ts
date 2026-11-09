@@ -20,6 +20,7 @@ export type Service = {
   role?: string
   summary: string
   stack: string[]
+  live?: string // site público no ar
   links?: Link[]
   diagram?: Diagram
 }
@@ -63,7 +64,7 @@ export type Content = {
     boot: { skip: string; lines: [string, string][]; done: string }
     top: { since: string; local: string }
     kpi: { operational: string; commits: string; incidents: string; stack: string }
-    service: { open: string; close: string; architecture: string }
+    service: { open: string; close: string; architecture: string; live: string }
     incident: { symptom: string; cause: string; fix: string; replay: string; backoff: string; resolved: string }
     deploys: { title: string; snapshot: string; activity: string }
     palette: { hint: string; placeholder: string; copyEmail: string; copied: string; download: string; none: string }
@@ -210,7 +211,7 @@ export const content: Record<Lang, Content> = {
         incidents: 'incidentes resolvidos',
         stack: 'tecnologias em produção',
       },
-      service: { open: 'detalhes', close: 'fechar', architecture: 'Arquitetura' },
+      service: { open: 'detalhes', close: 'fechar', architecture: 'Arquitetura', live: 'Ver no ar' },
       incident: {
         symptom: 'Sintoma',
         cause: 'Causa',
@@ -283,7 +284,8 @@ export const content: Record<Lang, Content> = {
         summary:
           'Site de pedidos que manda o pedido pronto pro WhatsApp da loja, sem app de delivery no meio, com painel pra loja. Feito pra um cliente real e pensado como white label.',
         stack: ['JavaScript', 'Firebase', 'Firestore', 'App Check'],
-        links: [{ label: 'lacarne.com.br', href: 'https://lacarne.com.br' }, repo('pede-direto')],
+        live: 'https://lacarne.com.br',
+        links: [repo('pede-direto')],
         diagram: pedeDiretoDiagram({ client: 'Cliente', site: 'Site de pedidos', panel: 'Painel da loja', wa: 'WhatsApp da loja' }),
       },
       {
@@ -414,7 +416,7 @@ export const content: Record<Lang, Content> = {
         incidents: 'resolved incidents',
         stack: 'technologies in production',
       },
-      service: { open: 'details', close: 'close', architecture: 'Architecture' },
+      service: { open: 'details', close: 'close', architecture: 'Architecture', live: 'See it live' },
       incident: {
         symptom: 'Symptom',
         cause: 'Cause',
@@ -487,7 +489,8 @@ export const content: Record<Lang, Content> = {
         summary:
           'Ordering site that sends the finished order to the restaurant’s WhatsApp, no delivery app in between, plus a store dashboard. Built for a real client, designed as white label.',
         stack: ['JavaScript', 'Firebase', 'Firestore', 'App Check'],
-        links: [{ label: 'lacarne.com.br', href: 'https://lacarne.com.br' }, repo('pede-direto')],
+        live: 'https://lacarne.com.br',
+        links: [repo('pede-direto')],
         diagram: pedeDiretoDiagram({ client: 'Customer', site: 'Ordering site', panel: 'Store dashboard', wa: 'Store WhatsApp' }),
       },
       {

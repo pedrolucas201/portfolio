@@ -38,6 +38,20 @@ export function ServiceCard({ service: s, ui, defaultOpen = false }: Props) {
           )}
         </span>
       </button>
+      {s.live && (
+        <p className="-mt-1 px-4 pb-4">
+          <a
+            href={s.live}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-accent/40 bg-accent/10 px-3 py-1.5 text-sm font-medium text-accent hover:bg-accent/20"
+          >
+            <span aria-hidden className="size-1.5 animate-pulse-ring rounded-full bg-accent" />
+            {ui.service.live}
+            <span className="font-mono text-[11px] text-accent/80">{s.live.replace(/^https?:\/\//, '')} ↗</span>
+          </a>
+        </p>
+      )}
       {open && (s.diagram || s.links) && (
         <div id={panelId} className="animate-rise border-t border-line px-4 pb-4">
           {s.diagram && <Diagram data={s.diagram} title={ui.service.architecture} />}
