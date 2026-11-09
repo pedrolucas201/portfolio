@@ -53,12 +53,12 @@ export function Cv({ c }: { c: Content }) {
           <Entry key={s.name} s={s} />
         ))}
       </Block>
-      <Block title={c.ui.sections.projects}>
+      <Block title={c.ui.projects}>
         {c.projects.map((s) => (
           <Entry key={s.name} s={s} />
         ))}
       </Block>
-      <Block title={c.ui.sections.stack}>
+      <Block title={c.ui.nav.stack}>
         <p>
           <strong>{c.ui.stackProd}:</strong> {c.stack.prod.join(', ')}
         </p>
@@ -66,7 +66,7 @@ export function Cv({ c }: { c: Content }) {
           <strong>{c.ui.stackKnown}:</strong> {c.stack.known.join(', ')}
         </p>
       </Block>
-      <Block title={c.ui.sections.education}>
+      <Block title={c.ui.education}>
         {c.education.map((e) => (
           <p key={e}>{e}</p>
         ))}
