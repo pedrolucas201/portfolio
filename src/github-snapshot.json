@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-09T04:40:34.359Z",
-  "total": 105,
+  "generatedAt": "2026-11-09T04:52:49.495Z",
+  "total": 124,
   "perDay": [
     0,
     0,
@@ -91,50 +91,50 @@
     0,
     0,
     0,
-    2
+    21
   ],
   "commits": [
     {
-      "repo": "pede-direto",
-      "sha": "6dfa04e",
-      "message": "Merge pull request #36 from pedrolucas201/fix/painel-app-check-travado",
-      "date": "2026-11-09T02:35:41Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/6dfa04ef8c0ebf4d4a49f0d90c4e30be44501e1f"
+      "repo": "portfolio",
+      "sha": "305e8ed",
+      "message": "content: telefone na aba currículo e nos PDFs (ok do Pedro)",
+      "date": "2026-11-09T04:40:44Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/305e8edde0b00a2d17bc17e2990c58d7ae448ff8"
     },
     {
-      "repo": "pede-direto",
-      "sha": "41f3b89",
-      "message": "fix(painel): App Check travado (403) recarrega sozinho com espera crescente",
-      "date": "2026-11-09T02:04:05Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/41f3b893631628aea67b079652e72bafdacbf14f"
+      "repo": "portfolio",
+      "sha": "0e03045",
+      "message": "content: nome completo no início e no currículo; CV volta a ter fundo branco",
+      "date": "2026-11-09T04:39:15Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/0e03045631b100408fe233b0b33edbe4a1b38b6c"
     },
     {
-      "repo": "pede-direto",
-      "sha": "64fb34d",
-      "message": "Merge pull request #35 from pedrolucas201/feat/nutella-adicional",
-      "date": "2026-10-30T19:04:54Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/64fb34dfd35f32f014b4b96edb70c216880607cd"
+      "repo": "portfolio",
+      "sha": "4dba95e",
+      "message": "feat: bolinha de aba aberta na sidebar; 'sobre' vira Origem / Hoje / Como trabalho",
+      "date": "2026-11-09T04:37:33Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/4dba95e9b62f54c1d65dbfb177b6f5bbb2cd8b8e"
     },
     {
-      "repo": "pede-direto",
-      "sha": "94aa498",
-      "message": "feat: Nutella como adicional (R$ 5); mel sai dos adicionais",
-      "date": "2026-10-30T18:57:52Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/94aa49801c1bee11f1452d5e6fac5875c651cedb"
+      "repo": "portfolio",
+      "sha": "2ae2116",
+      "message": "feat: PL interativo, tela limpa em botão flutuante, sidebar recolhível",
+      "date": "2026-11-09T04:34:44Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/2ae2116f90085da3d2d9e234dac7ece7c47995f8"
     },
     {
-      "repo": "pede-direto",
-      "sha": "af719f0",
-      "message": "Merge pull request #34 from pedrolucas201/feat/monta-na-tela",
-      "date": "2026-10-30T04:31:41Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/af719f0b5c64914b9d01296e4a597bed6fb7fba1"
+      "repo": "portfolio",
+      "sha": "1ee3bb3",
+      "message": "feat: 'sobre' no início, tela limpa (PL em trilhas), diagrama de arquitetura do Pede Direto (archify)",
+      "date": "2026-11-09T04:30:44Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/1ee3bb30cee4031fda0c2e5b5c7e4928c6d0e9a2"
     },
     {
-      "repo": "pede-direto",
-      "sha": "57f0901",
-      "message": "fix: copiar código Pix copia direto, mesmo sem HTTPS; a tela do Pix só abre se nada funcionar",
-      "date": "2026-10-30T04:19:55Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/57f09014e01bc1d3dd553e777f6063ec1172a101"
+      "repo": "portfolio",
+      "sha": "7e666a5",
+      "message": "content: 'Portfólio' no lugar de 'Este portfólio'",
+      "date": "2026-11-09T04:23:06Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/7e666a5c1d57407cbe5f0d830f8edd9d4eb7b17f"
     }
   ],
   "repos": {
@@ -231,7 +231,30 @@
           "date": "2026-11-03T13:43:30Z"
         }
       ]
+    },
+    "portfolio": {
+      "private": false,
+      "total": 19,
+      "capped": false,
+      "lastDate": "2026-11-09T04:40:44Z",
+      "recent": [
+        {
+          "date": "2026-11-09T04:40:44Z",
+          "message": "content: telefone na aba currículo e nos PDFs (ok do Pedro)",
+          "url": "https://github.com/pedrolucas201/portfolio/commit/305e8edde0b00a2d17bc17e2990c58d7ae448ff8"
+        },
+        {
+          "date": "2026-11-09T04:39:15Z",
+          "message": "content: nome completo no início e no currículo; CV volta a ter fundo branco",
+          "url": "https://github.com/pedrolucas201/portfolio/commit/0e03045631b100408fe233b0b33edbe4a1b38b6c"
+        },
+        {
+          "date": "2026-11-09T04:37:33Z",
+          "message": "feat: bolinha de aba aberta na sidebar; 'sobre' vira Origem / Hoje / Como trabalho",
+          "url": "https://github.com/pedrolucas201/portfolio/commit/4dba95e9b62f54c1d65dbfb177b6f5bbb2cd8b8e"
+        }
+      ]
     }
   },
-  "reposAt": "2026-11-09T04:40:34.359Z"
+  "reposAt": "2026-11-09T04:52:49.495Z"
 }

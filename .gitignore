@@ -27,3 +27,5 @@ dist-ssr
 activity.private.json
 # Recibos do archify (têm caminhos locais): ficam fora do site
 public/arquitetura/*.json
+
+.vercel
