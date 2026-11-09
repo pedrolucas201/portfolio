@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+  --color-ok: #16a34a;
+  --color-warn: #d97706;
+  --color-off: #9ca3af;
+}
+
+body {
+  @apply bg-zinc-50 text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-100;
+}
