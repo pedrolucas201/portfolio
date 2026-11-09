@@ -37,7 +37,7 @@ describe('App', () => {
     expect(screen.getByRole('status', { name: /operacionais|operational/ })).toBeTruthy()
     expect(screen.getAllByRole('link', { name: 'devgomesss@gmail.com' })[0].getAttribute('href')).toBe('mailto:devgomesss@gmail.com')
     // Topo do perfil e atalho na sidebar: os dois baixam o PDF do idioma atual.
-    const cvs = screen.getAllByRole('link', { name: /CV \(PDF\)/ })
+    const cvs = screen.getAllByRole('link', { name: /CV \(PDF\)|Baixar currículo|Download resume/ })
     expect(cvs).toHaveLength(2)
     for (const cv of cvs) {
       expect(cv.hasAttribute('download')).toBe(true)
