@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Mapa de repositórios de cliente (nomes sob NDA): só na máquina do Pedro
+activity.private.json

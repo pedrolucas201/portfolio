@@ -89,6 +89,40 @@ for (const repo of ACTIVITY) {
     console.warn(`github-snapshot: ${repo} mantido o anterior (${e.message})`)
   }
 }
+// Trabalho de cliente (Pierfans, Invo): repositórios de outras contas, somados num card por empresa.
+// O mapa empresa → repositórios fica em activity.private.json, fora do git, porque os nomes dos repos
+// entregariam o cliente (NDA). Aqui só saem contagem e datas dos commits do próprio Pedro.
+const PRIVATE_MAP = 'activity.private.json'
+if (existsSync(PRIVATE_MAP)) {
+  const groups = JSON.parse(readFileSync(PRIVATE_MAP, 'utf8'))
+  for (const [key, fullNames] of Object.entries(groups)) {
+    try {
+      const dates = []
+      let capped = false
+      for (const full of fullNames) {
+        const res = await fetch(`https://api.github.com/repos/${full}/commits?per_page=100&since=${since}&author=${USER}`, { headers })
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const list = await res.json()
+        capped ||= list.length === 100
+        dates.push(...list.map((c) => c.commit.author.date))
+      }
+      dates.sort((a, b) => b.localeCompare(a))
+      out.repos[key] = {
+        private: true,
+        total: dates.length,
+        capped,
+        lastDate: dates[0] ?? null,
+        recent: dates.slice(0, 3).map((date) => ({ date })),
+      }
+      console.log(`github-snapshot: ${key} ${dates.length} commits (privado, ${fullNames.length} repos)`)
+    } catch (e) {
+      console.warn(`github-snapshot: ${key} mantido o anterior (${e.message})`)
+    }
+  }
+} else {
+  console.warn(`github-snapshot: sem ${PRIVATE_MAP} (normal fora da máquina do Pedro), cards de cliente mantidos`)
+}
+
 out.reposAt = now.toISOString()
 
 writeFileSync(FILE, JSON.stringify(out, null, 2) + '\n')

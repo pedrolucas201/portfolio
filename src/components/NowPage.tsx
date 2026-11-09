@@ -14,8 +14,15 @@ type RepoActivity = {
 }
 
 const repos = (snapshot as { repos?: Record<string, RepoActivity> }).repos ?? {}
-// Repositório → aba do serviço no site (o portfólio não tem aba própria).
-const SERVICE_OF: Record<string, string> = { 'pede-direto': 'pede-direto', dashunlock: 'dashunlock', 'gas-manager': 'gas' }
+// Card → aba do serviço no site. pierfans/invo são somas de vários repos de cliente (ver github-snapshot.mjs).
+const SERVICE_OF: Record<string, string> = {
+  pierfans: 'pierfans',
+  invo: 'invo',
+  'pede-direto': 'pede-direto',
+  dashunlock: 'dashunlock',
+  'gas-manager': 'gas',
+  portfolio: 'portfolio',
+}
 const DAY = 86_400_000
 
 type Props = { c: Content; lang: string; onOpen: (id: string) => void; activity: Activity | null }
@@ -26,7 +33,8 @@ export function NowPage({ c, lang, onOpen, activity }: Props) {
   const [now] = useState(Date.now)
   const fmt = new Intl.DateTimeFormat(lang, { day: '2-digit', month: 'short' })
   const services = [...c.work, ...c.projects]
-  const cards = ACTIVITY_REPOS.filter((r) => repos[r]?.lastDate)
+  const cards = ['pierfans', 'invo', ...ACTIVITY_REPOS]
+    .filter((r) => repos[r]?.lastDate)
     .map((r) => ({ repo: r, a: repos[r], service: services.find((s) => s.id === SERVICE_OF[r]) }))
     .sort((x, y) => y.a.lastDate!.localeCompare(x.a.lastDate!))
 
@@ -42,7 +50,7 @@ export function NowPage({ c, lang, onOpen, activity }: Props) {
 
         <ul className="mt-4 grid gap-3 md:grid-cols-2">
           {cards.map(({ repo, a, service }) => {
-            const name = service ? service.name.split(' · ')[0] : p.portfolio
+            const name = service ? service.name.split(' · ')[0] : repo
             const days = Math.max(0, Math.floor((now - new Date(a.lastDate!).getTime()) / DAY))
             const head = (
               <span className="flex items-baseline justify-between gap-3">
@@ -80,19 +88,6 @@ export function NowPage({ c, lang, onOpen, activity }: Props) {
             )
           })}
         </ul>
-      </div>
-
-      <div className="mt-4 rounded-xl border border-line bg-panel/80 p-4 backdrop-blur">
-        <p className="mb-3 font-mono text-[11px] tracking-widest text-accent uppercase">{p.offCode}</p>
-        <ul className="space-y-2.5">
-          {c.now.items.map((item) => (
-            <li key={item} className="flex gap-3 leading-relaxed">
-              <span aria-hidden className="mt-2 size-1.5 shrink-0 rounded-full bg-accent" />
-              {item}
-            </li>
-          ))}
-        </ul>
-        <p className="mt-3 font-mono text-[11px] text-muted">{c.now.updated}</p>
       </div>
     </Section>
   )

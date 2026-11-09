@@ -69,7 +69,7 @@ export type Content = {
     palette: { hint: string; placeholder: string; copyEmail: string; copied: string; download: string; none: string }
     stackProd: string
     stackKnown: string
-    nowPage: { title: string; subtitle: string; commits: string; last: string; private: string; offCode: string; portfolio: string }
+    nowPage: { title: string; subtitle: string; commits: string; last: string; private: string }
     stackPage: { intro: string; legend: string; query: string; usedIn: string; none: string }
     education: string
     cvWork: string
@@ -90,7 +90,6 @@ export type Content = {
   stack: { prod: string[]; known: string[] }
   stackGroups: { label: string; items: string[] }[]
   education: string[]
-  now: { updated: string; items: string[] }
   method: { title: string; text: string }[]
   request: {
     title: string
@@ -116,7 +115,8 @@ export const GITHUB_USER = 'pedrolucas201'
 // Repositórios públicos do gráfico de atividade e do total de commits. Lista fechada de propósito:
 // nada de repo de cliente entra por acidente.
 export const PUBLIC_REPOS = ['pede-direto', 'dashunlock', 'portfolio']
-// Repositórios da aba "agora". Só projetos do Pedro: nada de repo de cliente. Privado mostra só contagem e data.
+// Repositórios próprios da aba "agora". Privado mostra só contagem e data. Trabalho de cliente entra somado por
+// empresa, com o mapa de repos fora do git (activity.private.json).
 export const ACTIVITY_REPOS = ['pede-direto', 'dashunlock', 'gas-manager', 'portfolio']
 export const CAREER_START = new Date(2024, 10, 1) // nov/2024, primeiro emprego como dev (CV)
 
@@ -240,8 +240,6 @@ export const content: Record<Lang, Content> = {
         commits: 'commits · 90 dias',
         last: 'último há',
         private: 'repositório privado',
-        offCode: 'Além do código',
-        portfolio: 'Este portfólio',
       },
       stackPage: {
         intro: 'Clique numa tecnologia pra ver onde ela roda.',
@@ -325,6 +323,15 @@ export const content: Record<Lang, Content> = {
           'Produto próprio em produção, com usuários reais: painel web, app offline-first pro entregador e backend. Código privado.',
         stack: ['React', 'Vite', 'React Native', 'Go', 'PostgreSQL'],
       },
+      {
+        id: 'portfolio',
+        name: 'Este portfólio',
+        status: 'ok',
+        summary:
+          'O site que você está vendo: React 19 + TypeScript, abas com #hash, Ctrl+K, CV em PDF gerado do mesmo conteúdo, atividade lida do git, testes e CI. Código aberto.',
+        stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Vitest', 'GitHub Actions'],
+        links: [repo('portfolio')],
+      },
     ],
     incidents: [
       {
@@ -352,21 +359,12 @@ export const content: Record<Lang, Content> = {
     stack,
     stackGroups: [
       { label: 'Linguagens', items: ['Dart', 'Go', 'PHP', 'JavaScript', 'TypeScript', 'Java'] },
-      { label: 'Mobile e front-end', items: ['Flutter', 'React', 'React Native', 'Vite', 'Angular', 'Ionic', 'Android'] },
+      { label: 'Mobile e front-end', items: ['Flutter', 'React', 'React Native', 'Vite', 'Tailwind CSS', 'Angular', 'Ionic', 'Android'] },
       { label: 'Back-end', items: ['Laravel', 'Node.js', 'JSP'] },
       { label: 'Dados', items: ['PostgreSQL', 'MySQL', 'Firebase', 'Firestore'] },
       { label: 'Infra e CI', items: ['GCP', 'AWS S3', 'GitHub Actions'] },
     ],
     education: ['Análise e Desenvolvimento de Sistemas, UNINASSAU (2026 – 2028, em andamento)', 'Português nativo · inglês intermediário'],
-    now: {
-      updated: 'atualizado em 09/11/2026',
-      items: [
-        'Mantendo em produção a plataforma da Pierfans (Laravel) e os projetos Flutter + Go da Invo.',
-        'Estudando n8n, Supabase e Kubernetes.',
-        'Cursando Análise e Desenvolvimento de Sistemas na UNINASSAU.',
-        'Aberto a vagas remotas em tempo integral: Flutter, Go e React.',
-      ],
-    },
     method: [
       { title: 'Critério de pronto antes do código', text: 'Escrevo o que tem que acontecer, e o que não pode acontecer, antes de implementar.' },
       { title: 'Causa raiz, não sintoma', text: 'Hipótese não é fato: confiro no código e no estado real antes de afirmar a causa.' },
@@ -456,8 +454,6 @@ export const content: Record<Lang, Content> = {
         commits: 'commits · 90 days',
         last: 'last',
         private: 'private repository',
-        offCode: 'Beyond the code',
-        portfolio: 'This portfolio',
       },
       stackPage: {
         intro: 'Click a technology to see where it runs.',
@@ -540,6 +536,15 @@ export const content: Record<Lang, Content> = {
         summary: 'My own product, in production with real users: web dashboard, offline-first delivery app and backend. Private code.',
         stack: ['React', 'Vite', 'React Native', 'Go', 'PostgreSQL'],
       },
+      {
+        id: 'portfolio',
+        name: 'This portfolio',
+        status: 'ok',
+        summary:
+          'The site you are looking at: React 19 + TypeScript, #hash tabs, Ctrl+K, a PDF resume generated from the same content, activity read from git, tests and CI. Open source.',
+        stack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Vitest', 'GitHub Actions'],
+        links: [repo('portfolio')],
+      },
     ],
     incidents: [
       {
@@ -566,21 +571,12 @@ export const content: Record<Lang, Content> = {
     stack,
     stackGroups: [
       { label: 'Languages', items: ['Dart', 'Go', 'PHP', 'JavaScript', 'TypeScript', 'Java'] },
-      { label: 'Mobile & front-end', items: ['Flutter', 'React', 'React Native', 'Vite', 'Angular', 'Ionic', 'Android'] },
+      { label: 'Mobile & front-end', items: ['Flutter', 'React', 'React Native', 'Vite', 'Tailwind CSS', 'Angular', 'Ionic', 'Android'] },
       { label: 'Back-end', items: ['Laravel', 'Node.js', 'JSP'] },
       { label: 'Data', items: ['PostgreSQL', 'MySQL', 'Firebase', 'Firestore'] },
       { label: 'Infra & CI', items: ['GCP', 'AWS S3', 'GitHub Actions'] },
     ],
     education: ['Systems Analysis and Development, UNINASSAU (2026 – 2028, in progress)', 'Portuguese native · English intermediate'],
-    now: {
-      updated: 'updated 2026-11-09',
-      items: [
-        'Running Pierfans’ platform (Laravel) and Invo’s Flutter + Go projects in production.',
-        'Studying n8n, Supabase and Kubernetes.',
-        'Studying Systems Analysis and Development at UNINASSAU.',
-        'Open to full-time remote roles: Flutter, Go and React.',
-      ],
-    },
     method: [
       { title: 'Definition of done before code', text: 'I write down what must happen, and what must not, before implementing.' },
       { title: 'Root cause, not symptom', text: 'A hypothesis isn’t a fact: I check the code and the live state before naming the cause.' },

@@ -1,6 +1,7 @@
 /// <reference types="node" />
 import { act, cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { createHash } from 'node:crypto'
+import { existsSync, readFileSync } from 'node:fs'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from './App'
 import { content } from './content'
@@ -151,6 +152,8 @@ describe('lógica', () => {
     const ids = (t: string) => usedIn(content.pt, t).map((s) => s.id)
     expect(ids('Dart')).toEqual(['invo'])
     expect(ids('PHP')).toEqual(['pierfans'])
+    expect(ids('TypeScript')).toEqual(['portfolio'])
+    expect(ids('React')).toEqual(['gas', 'portfolio'])
     for (const lang of ['pt', 'en'] as const) {
       for (const tech of content[lang].stackGroups.flatMap((g) => g.items)) {
         if (inProduction(content[lang], tech)) expect(usedIn(content[lang], tech), tech).not.toHaveLength(0)
@@ -176,6 +179,17 @@ describe('content', () => {
     const repos = (snapshot as { repos?: Record<string, { private: boolean; recent: object[] }> }).repos ?? {}
     for (const r of Object.values(repos).filter((r) => r.private)) {
       for (const commit of r.recent) expect(Object.keys(commit)).toEqual(['date'])
+    }
+  })
+
+  // O mapa empresa → repositórios de cliente só existe na máquina do Pedro (fora do git). Onde ele existe,
+  // nenhum nome de repo listado lá pode aparecer no conteúdo ou no retrato publicado.
+  it.runIf(existsSync('activity.private.json'))('nenhum nome de repo de cliente vaza pro site', () => {
+    const map = JSON.parse(readFileSync('activity.private.json', 'utf8')) as Record<string, string[]>
+    const published = (JSON.stringify(content) + JSON.stringify(snapshot)).toLowerCase()
+    for (const full of Object.values(map).flat()) {
+      expect(published).not.toContain(full.toLowerCase())
+      expect(published).not.toContain(full.split('/')[1].toLowerCase())
     }
   })
 
