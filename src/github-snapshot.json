@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-09T04:54:57.916Z",
-  "total": 125,
+  "generatedAt": "2026-11-16T15:38:46.232Z",
+  "total": 126,
   "perDay": [
     0,
     0,
@@ -65,17 +65,10 @@
     0,
     0,
     0,
-    0,
-    8,
-    2,
-    10,
-    2,
-    0,
-    3,
     4,
     0,
-    2,
-    7,
+    0,
+    4,
     0,
     15,
     0,
@@ -91,50 +84,57 @@
     0,
     0,
     0,
-    22
+    23,
+    0,
+    2,
+    8,
+    18,
+    0,
+    0,
+    2
   ],
   "commits": [
     {
-      "repo": "portfolio",
-      "sha": "986bfe8",
-      "message": "chore: retrato do git com o repo do portfólio; ignora .vercel",
-      "date": "2026-11-09T04:54:03Z",
-      "url": "https://github.com/pedrolucas201/portfolio/commit/986bfe8222a2bea8fe55f4c6d7ef8e29eb714f26"
+      "repo": "pede-direto",
+      "sha": "7d73f20",
+      "message": "Merge pull request #50 from pedrolucas201/fix/matuto-sem-cebola",
+      "date": "2026-11-16T02:01:46Z",
+      "url": "https://github.com/pedrolucas201/pede-direto/commit/7d73f20a586a9622c2f2ce51974d785018dab173"
     },
     {
-      "repo": "portfolio",
-      "sha": "305e8ed",
-      "message": "content: telefone na aba currículo e nos PDFs (ok do Pedro)",
-      "date": "2026-11-09T04:40:44Z",
-      "url": "https://github.com/pedrolucas201/portfolio/commit/305e8edde0b00a2d17bc17e2990c58d7ae448ff8"
+      "repo": "pede-direto",
+      "sha": "75340e7",
+      "message": "fix: Matuto sem cebola caramelizada (só o Bruto leva)",
+      "date": "2026-11-16T02:01:29Z",
+      "url": "https://github.com/pedrolucas201/pede-direto/commit/75340e7f1279527110d8f6f6bcdeb95ed08858cb"
     },
     {
-      "repo": "portfolio",
-      "sha": "0e03045",
-      "message": "content: nome completo no início e no currículo; CV volta a ter fundo branco",
-      "date": "2026-11-09T04:39:15Z",
-      "url": "https://github.com/pedrolucas201/portfolio/commit/0e03045631b100408fe233b0b33edbe4a1b38b6c"
+      "repo": "pede-direto",
+      "sha": "0e0e115",
+      "message": "Merge pull request #49 from pedrolucas201/fix/e2e-espera",
+      "date": "2026-11-13T00:22:03Z",
+      "url": "https://github.com/pedrolucas201/pede-direto/commit/0e0e11517b11f4d66d433d28309f2262eb8ad5f6"
     },
     {
-      "repo": "portfolio",
-      "sha": "4dba95e",
-      "message": "feat: bolinha de aba aberta na sidebar; 'sobre' vira Origem / Hoje / Como trabalho",
-      "date": "2026-11-09T04:37:33Z",
-      "url": "https://github.com/pedrolucas201/portfolio/commit/4dba95e9b62f54c1d65dbfb177b6f5bbb2cd8b8e"
+      "repo": "pede-direto",
+      "sha": "fc3f6fa",
+      "message": "test(e2e): relê o doc até a gravação chegar em vez de espera fixa (o pedido às vezes demorava mais de 1,5 s e o deploy era recusado)",
+      "date": "2026-11-13T00:21:54Z",
+      "url": "https://github.com/pedrolucas201/pede-direto/commit/fc3f6faf8f3b7e024f1788786abfe270f6b67f95"
     },
     {
-      "repo": "portfolio",
-      "sha": "2ae2116",
-      "message": "feat: PL interativo, tela limpa em botão flutuante, sidebar recolhível",
-      "date": "2026-11-09T04:34:44Z",
-      "url": "https://github.com/pedrolucas201/portfolio/commit/2ae2116f90085da3d2d9e234dac7ece7c47995f8"
+      "repo": "pede-direto",
+      "sha": "41c675a",
+      "message": "Merge pull request #48 from pedrolucas201/fix/miniatura-adicionais",
+      "date": "2026-11-13T00:02:16Z",
+      "url": "https://github.com/pedrolucas201/pede-direto/commit/41c675ad6009e58935f584d4d3b20c3d802ec55d"
     },
     {
-      "repo": "portfolio",
-      "sha": "1ee3bb3",
-      "message": "feat: 'sobre' no início, tela limpa (PL em trilhas), diagrama de arquitetura do Pede Direto (archify)",
-      "date": "2026-11-09T04:30:44Z",
-      "url": "https://github.com/pedrolucas201/portfolio/commit/1ee3bb30cee4031fda0c2e5b5c7e4928c6d0e9a2"
+      "repo": "pede-direto",
+      "sha": "6727306",
+      "message": "fix: miniatura dos adicionais voltou (a classe .mini colidia com a da mini comanda e o padding do papel escondia a imagem)",
+      "date": "2026-11-13T00:01:56Z",
+      "url": "https://github.com/pedrolucas201/pede-direto/commit/67273062e5e0cc8ccd36f658b1055ceea9dc1333"
     }
   ],
   "repos": {
@@ -142,22 +142,22 @@
       "private": false,
       "total": 100,
       "capped": true,
-      "lastDate": "2026-11-09T02:35:41Z",
+      "lastDate": "2026-11-16T02:01:46Z",
       "recent": [
         {
-          "date": "2026-11-09T02:35:41Z",
-          "message": "Merge pull request #36 from pedrolucas201/fix/painel-app-check-travado",
-          "url": "https://github.com/pedrolucas201/pede-direto/commit/6dfa04ef8c0ebf4d4a49f0d90c4e30be44501e1f"
+          "date": "2026-11-16T02:01:46Z",
+          "message": "Merge pull request #50 from pedrolucas201/fix/matuto-sem-cebola",
+          "url": "https://github.com/pedrolucas201/pede-direto/commit/7d73f20a586a9622c2f2ce51974d785018dab173"
         },
         {
-          "date": "2026-11-09T02:04:05Z",
-          "message": "fix(painel): App Check travado (403) recarrega sozinho com espera crescente",
-          "url": "https://github.com/pedrolucas201/pede-direto/commit/41f3b893631628aea67b079652e72bafdacbf14f"
+          "date": "2026-11-16T02:01:29Z",
+          "message": "fix: Matuto sem cebola caramelizada (só o Bruto leva)",
+          "url": "https://github.com/pedrolucas201/pede-direto/commit/75340e7f1279527110d8f6f6bcdeb95ed08858cb"
         },
         {
-          "date": "2026-10-30T19:04:54Z",
-          "message": "Merge pull request #35 from pedrolucas201/feat/nutella-adicional",
-          "url": "https://github.com/pedrolucas201/pede-direto/commit/64fb34dfd35f32f014b4b96edb70c216880607cd"
+          "date": "2026-11-13T00:22:03Z",
+          "message": "Merge pull request #49 from pedrolucas201/fix/e2e-espera",
+          "url": "https://github.com/pedrolucas201/pede-direto/commit/0e0e11517b11f4d66d433d28309f2262eb8ad5f6"
         }
       ]
     },
@@ -200,7 +200,7 @@
     },
     "pierfans": {
       "private": true,
-      "total": 66,
+      "total": 63,
       "capped": false,
       "lastDate": "2026-10-23T19:52:02Z",
       "recent": [
@@ -217,27 +217,32 @@
     },
     "invo": {
       "private": true,
-      "total": 116,
+      "total": 106,
       "capped": true,
-      "lastDate": "2026-11-03T13:49:03Z",
+      "lastDate": "2026-11-13T15:57:18Z",
       "recent": [
         {
-          "date": "2026-11-03T13:49:03Z"
+          "date": "2026-11-13T15:57:18Z"
         },
         {
-          "date": "2026-11-03T13:46:26Z"
+          "date": "2026-11-12T16:45:31Z"
         },
         {
-          "date": "2026-11-03T13:43:30Z"
+          "date": "2026-11-12T16:41:40Z"
         }
       ]
     },
     "portfolio": {
       "private": false,
-      "total": 20,
+      "total": 21,
       "capped": false,
-      "lastDate": "2026-11-09T04:54:03Z",
+      "lastDate": "2026-11-09T04:55:35Z",
       "recent": [
+        {
+          "date": "2026-11-09T04:55:35Z",
+          "message": "chore: atualiza retrato do git",
+          "url": "https://github.com/pedrolucas201/portfolio/commit/6d98d29bb7421336588e9fc87bdcb93055d7d677"
+        },
         {
           "date": "2026-11-09T04:54:03Z",
           "message": "chore: retrato do git com o repo do portfólio; ignora .vercel",
@@ -247,14 +252,9 @@
           "date": "2026-11-09T04:40:44Z",
           "message": "content: telefone na aba currículo e nos PDFs (ok do Pedro)",
           "url": "https://github.com/pedrolucas201/portfolio/commit/305e8edde0b00a2d17bc17e2990c58d7ae448ff8"
-        },
-        {
-          "date": "2026-11-09T04:39:15Z",
-          "message": "content: nome completo no início e no currículo; CV volta a ter fundo branco",
-          "url": "https://github.com/pedrolucas201/portfolio/commit/0e03045631b100408fe233b0b33edbe4a1b38b6c"
         }
       ]
     }
   },
-  "reposAt": "2026-11-09T04:54:57.916Z"
+  "reposAt": "2026-11-16T15:38:46.232Z"
 }
