@@ -1,12 +1,12 @@
 import type { Content } from '../content'
-import type { Activity } from '../hooks/useGithubActivity'
+import type { Activity } from '../activity'
 
 type Props = { activity: Activity | null; labels: Content['ui']['activity']; lang: string }
 
 const EMPTY_DAYS = new Array<number>(90).fill(0)
 
 // Commits públicos por dia nos últimos 90 dias. Mesmo tamanho carregando ou pronto (sem "pulo" na página).
-// Se a API ao vivo falhou, mostra o retrato do build com a data dele.
+// O dado é o retrato do build: mostra a data dele.
 export function ActivityChart({ activity, labels, lang }: Props) {
   const perDay = activity?.perDay ?? EMPTY_DAYS
   const max = Math.max(1, ...perDay)

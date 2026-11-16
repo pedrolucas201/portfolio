@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-16T15:44:48.143Z",
-  "total": 126,
+  "generatedAt": "2026-11-16T15:55:38.907Z",
+  "total": 129,
   "perDay": [
     0,
     0,
@@ -91,9 +91,30 @@
     18,
     0,
     0,
-    2
+    5
   ],
   "commits": [
+    {
+      "repo": "portfolio",
+      "sha": "efae5d7",
+      "message": "chore: atualiza retrato do git",
+      "date": "2026-11-16T15:46:11Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/efae5d78ed6605a56b9a3a9a6c68e986f0d87a0a"
+    },
+    {
+      "repo": "portfolio",
+      "sha": "18a572c",
+      "message": "chore: atualiza retrato do git",
+      "date": "2026-11-16T15:42:22Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/18a572cbb4a7e71f5cbf4c064b0c99022036a628"
+    },
+    {
+      "repo": "portfolio",
+      "sha": "b858bdc",
+      "message": "feat: feixes de luz na grade do fundo e KPIs em odômetro",
+      "date": "2026-11-16T15:42:21Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/b858bdc4246477fde45f3497f9ea4a482b6830b8"
+    },
     {
       "repo": "pede-direto",
       "sha": "7d73f20",
@@ -114,27 +135,6 @@
       "message": "Merge pull request #49 from pedrolucas201/fix/e2e-espera",
       "date": "2026-11-13T00:22:03Z",
       "url": "https://github.com/pedrolucas201/pede-direto/commit/0e0e11517b11f4d66d433d28309f2262eb8ad5f6"
-    },
-    {
-      "repo": "pede-direto",
-      "sha": "fc3f6fa",
-      "message": "test(e2e): relê o doc até a gravação chegar em vez de espera fixa (o pedido às vezes demorava mais de 1,5 s e o deploy era recusado)",
-      "date": "2026-11-13T00:21:54Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/fc3f6faf8f3b7e024f1788786abfe270f6b67f95"
-    },
-    {
-      "repo": "pede-direto",
-      "sha": "41c675a",
-      "message": "Merge pull request #48 from pedrolucas201/fix/miniatura-adicionais",
-      "date": "2026-11-13T00:02:16Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/41c675ad6009e58935f584d4d3b20c3d802ec55d"
-    },
-    {
-      "repo": "pede-direto",
-      "sha": "6727306",
-      "message": "fix: miniatura dos adicionais voltou (a classe .mini colidia com a da mini comanda e o padding do papel escondia a imagem)",
-      "date": "2026-11-13T00:01:56Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/67273062e5e0cc8ccd36f658b1055ceea9dc1333"
     }
   ],
   "repos": {
@@ -234,27 +234,27 @@
     },
     "portfolio": {
       "private": false,
-      "total": 21,
+      "total": 24,
       "capped": false,
-      "lastDate": "2026-11-09T04:55:35Z",
+      "lastDate": "2026-11-16T15:46:11Z",
       "recent": [
         {
-          "date": "2026-11-09T04:55:35Z",
+          "date": "2026-11-16T15:46:11Z",
           "message": "chore: atualiza retrato do git",
-          "url": "https://github.com/pedrolucas201/portfolio/commit/6d98d29bb7421336588e9fc87bdcb93055d7d677"
+          "url": "https://github.com/pedrolucas201/portfolio/commit/efae5d78ed6605a56b9a3a9a6c68e986f0d87a0a"
         },
         {
-          "date": "2026-11-09T04:54:03Z",
-          "message": "chore: retrato do git com o repo do portfólio; ignora .vercel",
-          "url": "https://github.com/pedrolucas201/portfolio/commit/986bfe8222a2bea8fe55f4c6d7ef8e29eb714f26"
+          "date": "2026-11-16T15:42:22Z",
+          "message": "chore: atualiza retrato do git",
+          "url": "https://github.com/pedrolucas201/portfolio/commit/18a572cbb4a7e71f5cbf4c064b0c99022036a628"
         },
         {
-          "date": "2026-11-09T04:40:44Z",
-          "message": "content: telefone na aba currículo e nos PDFs (ok do Pedro)",
-          "url": "https://github.com/pedrolucas201/portfolio/commit/305e8edde0b00a2d17bc17e2990c58d7ae448ff8"
+          "date": "2026-11-16T15:42:21Z",
+          "message": "feat: feixes de luz na grade do fundo e KPIs em odômetro",
+          "url": "https://github.com/pedrolucas201/portfolio/commit/b858bdc4246477fde45f3497f9ea4a482b6830b8"
         }
       ]
     }
   },
-  "reposAt": "2026-11-16T15:44:48.143Z"
+  "reposAt": "2026-11-16T15:55:38.907Z"
 }

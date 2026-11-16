@@ -17,7 +17,7 @@ import { Sidebar, type NavItem } from './components/Sidebar'
 import { StackPage } from './components/StackPage'
 import { TabBar, type Tab } from './components/TabBar'
 import { TopBar } from './components/TopBar'
-import { useGithubActivity } from './hooks/useGithubActivity'
+import { activity } from './activity'
 import { useTabs } from './hooks/useTabs'
 
 // Menu recolhido é preferência de quem visita: fica no navegador dele. Sem storage, abre normal.
@@ -81,7 +81,6 @@ export default function App() {
   const [toast, setToast] = useState('')
   // Tela limpa vale só pra aba em que foi ligada: trocar de aba desliga sozinho.
   const [cleanOn, setCleanOn] = useState<string | null>(null)
-  const activity = useGithubActivity()
   const { tabs, active, open, close } = useTabs(START_TABS, isTab)
   const clean = cleanOn === active
   const closeClean = useCallback(() => setCleanOn(null), [])

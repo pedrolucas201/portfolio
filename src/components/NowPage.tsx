@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { ACTIVITY_REPOS, type Content } from '../content'
 import snapshot from '../github-snapshot.json'
-import type { Activity } from '../hooks/useGithubActivity'
+import type { Activity } from '../activity'
 import { ActivityChart } from './ActivityChart'
 import { Section } from './Section'
 

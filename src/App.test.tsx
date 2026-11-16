@@ -8,7 +8,6 @@ import { content } from './content'
 import { Cv } from './Cv'
 import { careerUptime } from './lib/uptime'
 import snapshot from './github-snapshot.json'
-import { bucketByDay } from './hooks/useGithubActivity'
 import { requestMailto, requestWhatsapp } from './lib/request'
 import { inProduction, usedIn } from './lib/stack'
 
@@ -16,8 +15,7 @@ const hash = (w: string) => createHash('sha256').update(w).digest('hex').slice(0
 const FORBIDDEN = new Set(['9bc5648bcebea3ab', '83270f787967e067', '8224b82eefe8d232', '52667e8b16cdc074', 'cee373168fe39366', '711438b7374d532d', 'fe14010b4fe83303', 'f8e6ff5696022369', 'a93e7fc04e20e480'])
 
 beforeEach(() => {
-  // Sem rede nos testes: o GitHub "cai" e o site tem que seguir de pé.
-  vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response('[]', { status: 503 }))))
+  vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new Error('o site não deveria chamar a rede'))))
   sessionStorage.clear()
   history.replaceState(null, '', '/')
 })
@@ -72,21 +70,12 @@ describe('App', () => {
     expect(screen.queryByRole('dialog')).toBeNull()
   })
 
-  it('GitHub fora do ar ou no limite (403): mostra o retrato do build, não seção vazia', async () => {
-    vi.stubGlobal('fetch', vi.fn(() => Promise.resolve(new Response('rate limited', { status: 403 }))))
+  it('commits vêm do retrato do build: nenhuma chamada à API do GitHub no navegador', () => {
     render(<App />)
-    // No início, o indicador de commits mostra o total do retrato em vez de ficar em "…".
-    expect((await screen.findAllByText(String(snapshot.total))).length).toBeGreaterThan(0)
-    // Na aba agora, o gráfico de atividade avisa que é o retrato do build.
+    expect(screen.getAllByText(String(snapshot.total)).length).toBeGreaterThan(0)
     openTab('now')
     expect(screen.getByText(/retrato de|snapshot from/)).toBeTruthy()
-  })
-
-  it('rede caída também cai no retrato', async () => {
-    vi.stubGlobal('fetch', vi.fn(() => Promise.reject(new TypeError('Failed to fetch'))))
-    render(<App />)
-    openTab('now')
-    expect(await screen.findByText(/retrato de|snapshot from/)).toBeTruthy()
+    expect(fetch).not.toHaveBeenCalled()
   })
 
   it('abas: abre serviço pela paleta, fecha e volta pra vizinha; o #hash acompanha', () => {
@@ -144,13 +133,6 @@ describe('App', () => {
 })
 
 describe('lógica', () => {
-  it('agrupa commits por dia, ignorando os fora da janela', () => {
-    const now = new Date('2026-11-09T12:00:00Z')
-    const c = (date: string) => ({ repo: 'r', sha: 'x', message: 'm', url: '', date })
-    const days = bucketByDay([c('2026-11-09T10:00:00Z'), c('2026-11-09T01:00:00Z'), c('2026-11-07T12:00:00Z'), c('2025-01-01T00:00:00Z')], now, 5)
-    expect(days).toEqual([0, 0, 1, 0, 2])
-  })
-
   it('pedido vira link de WhatsApp e de e-mail com a mensagem intacta', () => {
     const draft = { type: 'Projeto', name: 'Ana & Cia', message: 'App de pedidos\nprazo: março' }
     const wa = new URL(requestWhatsapp(draft, 'assinatura'))
