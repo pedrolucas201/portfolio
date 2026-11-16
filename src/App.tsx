@@ -144,7 +144,13 @@ export default function App() {
   ]
 
   const views: Record<SectionId, () => ReactNode> = {
-    overview: () => <Overview c={c} commits={activity?.total ?? null} roll={firstVisit} ready={!booting} />,
+    overview: () => <Overview
+        c={c}
+        commits={activity.total}
+        asOf={new Intl.DateTimeFormat(lang === 'pt' ? 'pt-BR' : 'en', { day: '2-digit', month: 'short' }).format(new Date(activity.snapshotAt!))}
+        roll={firstVisit}
+        ready={!booting}
+      />,
     work: () => (
       <Section id="work" title={c.ui.nav.work}>
         <ul className="grid gap-3">

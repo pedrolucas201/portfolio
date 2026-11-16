@@ -3,14 +3,15 @@ import { DownloadIcon } from './DownloadIcon'
 import { Odometer } from './Odometer'
 
 // roll: primeira visita da sessão (tem abertura); ready: a abertura fechou.
-type Props = { c: Content; commits: number | null; roll: boolean; ready: boolean }
+// asOf: data do retrato dos commits (o número envelhece até o próximo deploy).
+type Props = { c: Content; commits: number | null; asOf: string; roll: boolean; ready: boolean }
 
 // Perfil + "sobre" (trajetória, hoje, o que busca) + indicadores. O essencial dos primeiros 30 s está aqui.
-export function Overview({ c, commits, roll, ready }: Props) {
+export function Overview({ c, commits, asOf, roll, ready }: Props) {
   const all = [...c.work, ...c.projects]
-  const kpis: [string, string | number][] = [
+  const kpis: [string, string | number, string?][] = [
     [c.ui.kpi.operational, all.filter((s) => s.status === 'ok').length],
-    [c.ui.kpi.commits, commits ?? '…'],
+    [c.ui.kpi.commits, commits ?? '…', `${c.ui.activity.snapshot} ${asOf}`],
     [c.ui.kpi.incidents, c.incidents.length],
     [c.ui.kpi.stack, c.stack.prod.length],
   ]
@@ -66,7 +67,7 @@ export function Overview({ c, commits, roll, ready }: Props) {
       </div>
 
       <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        {kpis.map(([label, value], i) => (
+        {kpis.map(([label, value, note], i) => (
           <div
             key={label}
             className="animate-rise rounded-xl border border-line bg-panel/80 p-4 backdrop-blur"
@@ -75,7 +76,10 @@ export function Overview({ c, commits, roll, ready }: Props) {
             <dd className="font-mono text-2xl font-semibold text-accent tabular-nums">
               {roll && typeof value === 'number' ? <Odometer value={value} ready={ready} /> : value}
             </dd>
-            <dt className="mt-1 text-xs text-muted">{label}</dt>
+            <dt className="mt-1 text-xs text-muted">
+              {label}
+              {note && <span className="block text-[11px] text-muted/80">{note}</span>}
+            </dt>
           </div>
         ))}
       </dl>
