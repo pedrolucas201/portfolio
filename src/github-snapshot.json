@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-16T16:00:52.137Z",
-  "total": 129,
+  "generatedAt": "2026-11-16T16:06:16.798Z",
+  "total": 133,
   "perDay": [
     0,
     0,
@@ -91,9 +91,37 @@
     18,
     0,
     0,
-    5
+    9
   ],
   "commits": [
+    {
+      "repo": "portfolio",
+      "sha": "ab66b8c",
+      "message": "chore: atualiza retrato do git",
+      "date": "2026-11-16T16:01:17Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/ab66b8cbd21bb4d63619c3de30d339d3340985d8"
+    },
+    {
+      "repo": "portfolio",
+      "sha": "f7a1e17",
+      "message": "fix: 'último Xd' conta até a data do retrato, não até hoje",
+      "date": "2026-11-16T15:59:37Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/f7a1e17680d6d402e033443f4b74a68175249baa"
+    },
+    {
+      "repo": "portfolio",
+      "sha": "760816e",
+      "message": "feat: data do retrato embaixo do KPI de commits (o número envelhece até o próximo deploy)",
+      "date": "2026-11-16T15:58:18Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/760816e3352da028bc87649015978794aad36c09"
+    },
+    {
+      "repo": "portfolio",
+      "sha": "4652047",
+      "message": "fix: commits só do retrato do build, sem chamar a API do GitHub no navegador",
+      "date": "2026-11-16T15:56:40Z",
+      "url": "https://github.com/pedrolucas201/portfolio/commit/465204759c76e461888fafc13ef87689c0b6ec09"
+    },
     {
       "repo": "portfolio",
       "sha": "efae5d7",
@@ -107,34 +135,6 @@
       "message": "chore: atualiza retrato do git",
       "date": "2026-11-16T15:42:22Z",
       "url": "https://github.com/pedrolucas201/portfolio/commit/18a572cbb4a7e71f5cbf4c064b0c99022036a628"
-    },
-    {
-      "repo": "portfolio",
-      "sha": "b858bdc",
-      "message": "feat: feixes de luz na grade do fundo e KPIs em odômetro",
-      "date": "2026-11-16T15:42:21Z",
-      "url": "https://github.com/pedrolucas201/portfolio/commit/b858bdc4246477fde45f3497f9ea4a482b6830b8"
-    },
-    {
-      "repo": "pede-direto",
-      "sha": "7d73f20",
-      "message": "Merge pull request #50 from pedrolucas201/fix/matuto-sem-cebola",
-      "date": "2026-11-16T02:01:46Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/7d73f20a586a9622c2f2ce51974d785018dab173"
-    },
-    {
-      "repo": "pede-direto",
-      "sha": "75340e7",
-      "message": "fix: Matuto sem cebola caramelizada (só o Bruto leva)",
-      "date": "2026-11-16T02:01:29Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/75340e7f1279527110d8f6f6bcdeb95ed08858cb"
-    },
-    {
-      "repo": "pede-direto",
-      "sha": "0e0e115",
-      "message": "Merge pull request #49 from pedrolucas201/fix/e2e-espera",
-      "date": "2026-11-13T00:22:03Z",
-      "url": "https://github.com/pedrolucas201/pede-direto/commit/0e0e11517b11f4d66d433d28309f2262eb8ad5f6"
     }
   ],
   "repos": {
@@ -234,27 +234,27 @@
     },
     "portfolio": {
       "private": false,
-      "total": 24,
+      "total": 28,
       "capped": false,
-      "lastDate": "2026-11-16T15:46:11Z",
+      "lastDate": "2026-11-16T16:01:17Z",
       "recent": [
         {
-          "date": "2026-11-16T15:46:11Z",
+          "date": "2026-11-16T16:01:17Z",
           "message": "chore: atualiza retrato do git",
-          "url": "https://github.com/pedrolucas201/portfolio/commit/efae5d78ed6605a56b9a3a9a6c68e986f0d87a0a"
+          "url": "https://github.com/pedrolucas201/portfolio/commit/ab66b8cbd21bb4d63619c3de30d339d3340985d8"
         },
         {
-          "date": "2026-11-16T15:42:22Z",
-          "message": "chore: atualiza retrato do git",
-          "url": "https://github.com/pedrolucas201/portfolio/commit/18a572cbb4a7e71f5cbf4c064b0c99022036a628"
+          "date": "2026-11-16T15:59:37Z",
+          "message": "fix: 'último Xd' conta até a data do retrato, não até hoje",
+          "url": "https://github.com/pedrolucas201/portfolio/commit/f7a1e17680d6d402e033443f4b74a68175249baa"
         },
         {
-          "date": "2026-11-16T15:42:21Z",
-          "message": "feat: feixes de luz na grade do fundo e KPIs em odômetro",
-          "url": "https://github.com/pedrolucas201/portfolio/commit/b858bdc4246477fde45f3497f9ea4a482b6830b8"
+          "date": "2026-11-16T15:58:18Z",
+          "message": "feat: data do retrato embaixo do KPI de commits (o número envelhece até o próximo deploy)",
+          "url": "https://github.com/pedrolucas201/portfolio/commit/760816e3352da028bc87649015978794aad36c09"
         }
       ]
     }
   },
-  "reposAt": "2026-11-16T16:00:52.137Z"
+  "reposAt": "2026-11-16T16:06:16.798Z"
 }
