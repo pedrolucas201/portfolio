@@ -59,11 +59,6 @@ body {
   animation: draw 1.6s ease-out both;
 }
 
-@keyframes sweep {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100vw); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

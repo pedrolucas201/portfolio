@@ -15,7 +15,7 @@ type Props = {
 // em vez de tablist: o botão de fechar dentro de um tablist não é válido pra leitor de tela.
 export function TabBar({ tabs, active, onSelect, onClose, closeLabel, ariaLabel }: Props) {
   return (
-    <nav aria-label={ariaLabel} className="flex items-end border-b border-line bg-bg/60 backdrop-blur">
+    <nav aria-label={ariaLabel} className="flex items-end border-b border-line bg-bg/85 backdrop-blur">
       <ul className="flex min-w-0 flex-1 gap-1 overflow-x-auto px-2 pt-2 [scrollbar-width:none]">
         {tabs.map((t) => {
           const selected = t.id === active

@@ -1,13 +1,8 @@
 import { useEffect, useRef } from 'react'
+import { Beams } from './Beams'
 
-// Fundo do console: grade fina + "pulsos" de rede atravessando + uma "lanterna" que acende a grade em volta
+// Fundo do console: grade fina + feixes de luz correndo nas linhas (<Beams>) + uma "lanterna" que acende a grade em volta
 // do mouse. Só CSS: o mouse muda duas variáveis CSS (--mx/--my) direto no DOM, sem re-render do React.
-const pulses = [
-  { top: '18%', delay: '0s', dur: '9s' },
-  { top: '46%', delay: '3s', dur: '12s' },
-  { top: '74%', delay: '6s', dur: '10s' },
-]
-
 const grid = (color: string) =>
   `linear-gradient(${color} 1px, transparent 1px), linear-gradient(90deg, ${color} 1px, transparent 1px)`
 
@@ -64,13 +59,7 @@ export function Backdrop() {
           background: 'radial-gradient(420px circle at var(--mx) var(--my), color-mix(in srgb, var(--color-accent) 7%, transparent), transparent 70%)',
         }}
       />
-      {pulses.map((p) => (
-        <span
-          key={p.top}
-          className="absolute h-px w-40 bg-gradient-to-r from-transparent via-accent to-transparent opacity-60"
-          style={{ top: p.top, animation: `sweep ${p.dur} linear ${p.delay} infinite` }}
-        />
-      ))}
+      <Beams />
       <div className="absolute -top-40 left-1/4 size-[36rem] rounded-full bg-accent/5 blur-3xl" />
     </div>
   )

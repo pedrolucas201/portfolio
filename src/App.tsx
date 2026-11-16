@@ -66,6 +66,7 @@ const isTab = (id: string) => isSection(id) || SERVICES.some((s) => s.id === id)
 export default function App() {
   const [lang, setLang] = useState<Lang>(initialLang)
   const [booting, setBooting] = useState(shouldBoot)
+  const [firstVisit] = useState(booting)
   const [palette, setPalette] = useState(false)
   const [collapsed, setCollapsed] = useState(initialCollapsed)
   const toggleSidebar = () =>
@@ -144,7 +145,7 @@ export default function App() {
   ]
 
   const views: Record<SectionId, () => ReactNode> = {
-    overview: () => <Overview c={c} commits={activity?.total ?? null} />,
+    overview: () => <Overview c={c} commits={activity?.total ?? null} roll={firstVisit} ready={!booting} />,
     work: () => (
       <Section id="work" title={c.ui.nav.work}>
         <ul className="grid gap-3">

@@ -30,7 +30,7 @@ export function Sidebar({ c, items, active, openTabs, collapsed, onToggle, onPal
   const hide = collapsed ? 'sr-only' : ''
   return (
     <aside
-      className={`sticky top-0 hidden h-dvh shrink-0 flex-col border-r border-line bg-panel/70 lowercase backdrop-blur transition-[width] duration-200 lg:flex ${
+      className={`sticky top-0 hidden h-dvh shrink-0 flex-col border-r border-line bg-panel/85 lowercase backdrop-blur transition-[width] duration-200 lg:flex ${
         collapsed ? 'w-16' : 'w-64'
       }`}
     >

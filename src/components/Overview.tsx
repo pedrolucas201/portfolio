@@ -1,10 +1,12 @@
 import type { Content } from '../content'
 import { DownloadIcon } from './DownloadIcon'
+import { Odometer } from './Odometer'
 
-type Props = { c: Content; commits: number | null }
+// roll: primeira visita da sessão (tem abertura); ready: a abertura fechou.
+type Props = { c: Content; commits: number | null; roll: boolean; ready: boolean }
 
 // Perfil + "sobre" (trajetória, hoje, o que busca) + indicadores. O essencial dos primeiros 30 s está aqui.
-export function Overview({ c, commits }: Props) {
+export function Overview({ c, commits, roll, ready }: Props) {
   const all = [...c.work, ...c.projects]
   const kpis: [string, string | number][] = [
     [c.ui.kpi.operational, all.filter((s) => s.status === 'ok').length],
@@ -70,7 +72,9 @@ export function Overview({ c, commits }: Props) {
             className="animate-rise rounded-xl border border-line bg-panel/80 p-4 backdrop-blur"
             style={{ animationDelay: `${i * 70}ms` }}
           >
-            <dd className="font-mono text-2xl font-semibold text-accent">{value}</dd>
+            <dd className="font-mono text-2xl font-semibold text-accent tabular-nums">
+              {roll && typeof value === 'number' ? <Odometer value={value} ready={ready} /> : value}
+            </dd>
             <dt className="mt-1 text-xs text-muted">{label}</dt>
           </div>
         ))}
