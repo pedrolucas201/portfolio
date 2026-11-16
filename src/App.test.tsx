@@ -70,6 +70,24 @@ describe('App', () => {
     expect(screen.queryByRole('dialog')).toBeNull()
   })
 
+  it('"último Xd" conta até a data do retrato: 30 dias depois, os cards mostram o mesmo', () => {
+    const days = () => {
+      cleanup()
+      render(<App />)
+      openTab('now')
+      return screen.getAllByText(/\d+d$/).map((e) => e.textContent)
+    }
+    const today = days()
+    expect(today.length).toBeGreaterThan(0)
+    vi.useFakeTimers({ toFake: ['Date'] })
+    vi.setSystemTime(Date.now() + 30 * 86_400_000)
+    try {
+      expect(days()).toEqual(today)
+    } finally {
+      vi.useRealTimers()
+    }
+  })
+
   it('commits vêm do retrato do build: nenhuma chamada à API do GitHub no navegador', () => {
     render(<App />)
     expect(screen.getAllByText(String(snapshot.total)).length).toBeGreaterThan(0)

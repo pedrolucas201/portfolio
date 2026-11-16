@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { ACTIVITY_REPOS, type Content } from '../content'
 import snapshot from '../github-snapshot.json'
 import type { Activity } from '../activity'
@@ -30,7 +29,9 @@ type Props = { c: Content; lang: string; onOpen: (id: string) => void; activity:
 // "Agora" lido do git (retrato do build), mais o que não aparece em commit.
 export function NowPage({ c, lang, onOpen, activity }: Props) {
   const p = c.ui.nowPage
-  const [now] = useState(Date.now)
+  // "último Xd" conta até a data do retrato, não até hoje: o dado é congelado no deploy, e contar até hoje
+  // faria o portfólio parecer parado entre um deploy e outro. O gráfico acima mostra a data do retrato.
+  const now = new Date(snapshot.generatedAt).getTime()
   const fmt = new Intl.DateTimeFormat(lang, { day: '2-digit', month: 'short' })
   const services = [...c.work, ...c.projects]
   const cards = ['pierfans', 'invo', ...ACTIVITY_REPOS]
